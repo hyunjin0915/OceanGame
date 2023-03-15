@@ -14,7 +14,7 @@ public class TalkManager : MonoBehaviour
     private void GenerateData()
     {
         //npc
-        talkData.Add(1000, new string[] { "정신이 들었니?" });
+        talkData.Add(1000, new string[] { "정신이 들었니?", "안녕" });
 
         //사물
         talkData.Add(100, new string[] { "특별할 건 없어보인다." });
