@@ -36,8 +36,10 @@ public class PlayerController : MonoBehaviour
         if (movement.y < 0)
             dirVec = Vector3.down;
 
-        if (Input.GetButtonDown("Jump") && scanObj != null) //스페이스바 눌러서 대화 넘기기
+        if (Input.GetButtonDown("Jump") && scanObj != null&&!manager.isnowTalking) //스페이스바 눌러서 대화 넘기기
+        {
             manager.Action(scanObj);
+        }
     }
 
     private void FixedUpdate()

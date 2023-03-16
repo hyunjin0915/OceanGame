@@ -8,13 +8,21 @@ public class GameManager : MonoBehaviour
 {
     public TalkManager talkManager;
     [SerializeField]
-    private TextMeshProUGUI talkText;
+    public TextMeshProUGUI talkText; //대화창 텍스트
     [SerializeField]
-    private GameObject talkPanel;
-    private GameObject scanObject;
-    public bool isAction;
-    public int talkIndex;
+    private GameObject talkPanel; //대화창
+    [SerializeField]
+    private float textSpeed; //대화글 써지는 속도
 
+    private GameObject scanObject; //앞에있는 물체 판별
+    public bool isAction;
+    public int talkIndex; //몇번째 문장 가져올지 결정
+    public bool isnowTalking; //말하고있는데 스페이스바 눌러서 다음 문자열로 넘어가버리지 않게
+
+    private void Start()
+    {
+        talkText.text = string.Empty; 
+    }
     public void Action(GameObject scanObj)
     { 
         scanObject = scanObj; //넘겨받은 스캔된 오브젝트의
@@ -22,6 +30,7 @@ public class GameManager : MonoBehaviour
         Talk(objData.id, objData.isNpc); //Talk함수 호출하고
        
         talkPanel.SetActive(isAction); //panel 활성화/비활성화
+
     }
 
     void Talk(int id, bool isNpc)
@@ -36,14 +45,28 @@ public class GameManager : MonoBehaviour
         }
         if (isNpc)
         {
-            talkText.text = talkData;
+            talkText.text = string.Empty; //텍스트 비우고
+            StartCoroutine(TypeLine(id)); //대화창입력 코루틴 실행
         }
         else
         {
-            talkText.text = talkData;
+            talkText.text = string.Empty;
+            StartCoroutine(TypeLine(id));
         }
 
         isAction = true;
         talkIndex++; //다음 문장으로
     }
+
+    IEnumerator TypeLine(int id) //한글자씩 써지는 효과
+    {
+        foreach(char c in talkManager.GetTalk(id, talkIndex).ToCharArray())
+        {
+            isnowTalking = true;
+            talkText.text += c;
+            yield return new WaitForSeconds(textSpeed);
+        }
+        isnowTalking = false;
+    }
+
 }
