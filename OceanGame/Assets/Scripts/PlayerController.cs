@@ -7,6 +7,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     private float walkSpeed;
+    [SerializeField]
+    private float runSpeed;
+    private float applyRunSpeed;
 
     //필요한 컴포넌트들
     private Rigidbody2D myRigid;
@@ -40,14 +43,32 @@ public class PlayerController : MonoBehaviour
         {
             manager.Action(scanObj);
         }
+
     }
 
     private void FixedUpdate()
     {
         Move();
-        Debug.DrawRay(myRigid.position, dirVec , new Color(0, 1, 0));
-        //이미 플레이어는 collider 있음. 플레이어 제외 cast를 위해 레이어 나누어서 관리
-        RaycastHit2D rayHit = Physics2D.Raycast(myRigid.position, dirVec, 0.7f, LayerMask.GetMask("Object"));
+        Run();
+        DrawRay();
+    }
+    void Move() //플레이어 이동
+    {
+        myRigid.MovePosition(myRigid.position + movement * (walkSpeed + applyRunSpeed) * Time.fixedDeltaTime);
+    }
+
+    void Run()
+    {
+        if (Input.GetKey(KeyCode.LeftShift))
+            applyRunSpeed = runSpeed;
+        else
+            applyRunSpeed = 0;
+    }
+
+    void DrawRay()
+    {
+        Debug.DrawRay(myRigid.position, dirVec, new Color(0, 1, 0));
+        RaycastHit2D rayHit = Physics2D.Raycast(myRigid.position, dirVec, 0.7f, LayerMask.GetMask("Object")); //이미 플레이어는 collider 있음. 플레이어 제외 cast를 위해 레이어 나누어서 관리
 
         if (rayHit.collider != null)
         {
@@ -55,9 +76,5 @@ public class PlayerController : MonoBehaviour
         }
         else
             scanObj = null;
-    }
-    void Move() //플레이어 이동
-    {
-        myRigid.MovePosition(myRigid.position + movement * walkSpeed * Time.fixedDeltaTime);
     }
 }

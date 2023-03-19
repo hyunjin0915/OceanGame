@@ -378,6 +378,8 @@
 "Assets/Scripts/GameManager.cs"
 "Assets/Scripts/ObjData.cs"
 "Assets/Scripts/PlayerController.cs"
+"Assets/Scripts/QuestData.cs"
+"Assets/Scripts/QuestManager.cs"
 "Assets/Scripts/TalkManager.cs"
 -langversion:9.0
 

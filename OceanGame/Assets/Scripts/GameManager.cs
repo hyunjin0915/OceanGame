@@ -7,6 +7,9 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public TalkManager talkManager;
+    public QuestManager questManager;
+    [SerializeField]
+    public Image portraitImg;
     [SerializeField]
     public TextMeshProUGUI talkText; //대화창 텍스트
     [SerializeField]
@@ -21,6 +24,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log(questManager.CheckQuest());
         talkText.text = string.Empty; 
     }
     public void Action(GameObject scanObj)
@@ -35,32 +39,47 @@ public class GameManager : MonoBehaviour
 
     void Talk(int id, bool isNpc)
     {
-        string talkData = talkManager.GetTalk(id, talkIndex); //해당하는 대화내용 가져와서 
+        int questTalkIndex = questManager.GetQuestTalkIndex(id);
+        string talkData = talkManager.GetTalk(id+ questTalkIndex, talkIndex); //해당하는 대화내용 가져와서 
 
         if (talkData == null) //대화끝나면
         {
             isAction = false; //창없애고
             talkIndex = 0; //인덱스초기화한 다음
+            Debug.Log(questManager.CheckQuest(id)); //대화가 끝나면 퀘스트의 다음 대화로
             return; //함수 종료
         }
         if (isNpc)
         {
             talkText.text = string.Empty; //텍스트 비우고
-            StartCoroutine(TypeLine(id)); //대화창입력 코루틴 실행
+
+            //int questTalkIndex = questManager.GetQuestTalkIndex(id);
+            //string TalkData = talkManager.GetTalk(id + questTalkIndex, talkIndex);
+            string realTalkData = talkData.Split(':')[0];
+            StartCoroutine(TypeLine(realTalkData)); //대화창입력 코루틴 실행
+
+            portraitImg.color = new Color(1, 1, 1, 1);
+            portraitImg.sprite = talkManager.GetPortrait(id, int.Parse(talkData.Split(':')[1]));
         }
         else
         {
             talkText.text = string.Empty;
-            StartCoroutine(TypeLine(id));
+            StartCoroutine(TypeLine(talkData));
+
+            portraitImg.color = new Color(1, 1, 1, 0);
+
         }
 
         isAction = true;
         talkIndex++; //다음 문장으로
     }
 
-    IEnumerator TypeLine(int id) //한글자씩 써지는 효과
+    IEnumerator TypeLine(string talking) //한글자씩 써지는 효과
     {
-        foreach(char c in talkManager.GetTalk(id, talkIndex).ToCharArray())
+      //  int questTalkIndex = questManager.GetQuestTalkIndex(id);
+      //  string TalkData = talkManager.GetTalk(id + questTalkIndex, talkIndex);
+      //  string realTalkData = TalkData.Split(':')[0];
+        foreach (char c in talking.ToCharArray())
         {
             isnowTalking = true;
             talkText.text += c;
