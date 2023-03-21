@@ -21,12 +21,39 @@ public class GameManager : MonoBehaviour
     public bool isAction;
     public int talkIndex; //몇번째 문장 가져올지 결정
     public bool isnowTalking; //말하고있는데 스페이스바 눌러서 다음 문자열로 넘어가버리지 않게
+    
+    public GameObject MeueSet; //메뉴창
+    public GameObject player; //플레이어
 
     private void Start()
     {
         Debug.Log(questManager.CheckQuest());
-        talkText.text = string.Empty; 
+        talkText.text = string.Empty;
+
+        //게임 시작할때 로딩한 것을 불러옴 여기 수정 필요할듯 로딩버튼을 시작화면에 만들거면 수정필요
+        GameLoad();
     }
+
+    void Update()
+    {
+        //ESC키를 눌렀을 때 메뉴창이 나오도록 함
+        if (Input.GetButtonDown("Cancel"))
+        {
+            if (MeueSet.activeSelf) //만약 메뉴가 커져있을 경우에
+            {
+                MeueSet.SetActive(false); //꺼진다.
+                Time.timeScale = 1f; //게임 속도를 1배속으로 전환한다.
+            }
+            else //아니라면
+                MeueSet.SetActive(true); //MeueSet 활성화
+            //게임 속도를 0배속으로 전환한다.
+            Time.timeScale = 0f;
+
+        }
+           
+        
+    }
+
     public void Action(GameObject scanObj)
     { 
         scanObject = scanObj; //넘겨받은 스캔된 오브젝트의
@@ -86,6 +113,47 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(textSpeed);
         }
         isnowTalking = false;
+    }
+
+    //게임종료 함수
+    public void GameExit()
+    {
+        Application.Quit();
+    }
+
+    //게임 저장 함수
+    public void GameSave()
+    {
+        //PlayerPrefs : 간단한 데이터 저장기능을 지원하는 클래스
+        PlayerPrefs.SetFloat("PlayerX", player.transform.position.x);
+        PlayerPrefs.SetFloat("PlayerY", player.transform.position.y);
+        PlayerPrefs.SetFloat("QuestId", questManager.questId);
+        PlayerPrefs.SetFloat("QuestActionIndex", questManager.questActionIndex);
+        PlayerPrefs.Save(); //레지스트리에 위에있는 플레이어 위치, 퀘스트를 저장해준다.
+
+        MeueSet.SetActive(false); //세이브가 되었으므로 메뉴창 꺼짐
+    }
+
+    //게임 불러오기 함수
+    public void GameLoad()
+    {
+        //최초 게임 실행했을 땐 데이터가 없으므로 예외처리 로직 작성 
+        if (!PlayerPrefs.HasKey("PlayerX"))
+            return; //로드를 하지 말라는 것
+
+        //게임데이터 저장한 것을 불러옴
+        float x = PlayerPrefs.GetFloat("PlayerX");
+        float y = PlayerPrefs.GetFloat("PlayerY");
+        int questId = PlayerPrefs.GetInt("QuestId");
+        int questActionIndex = PlayerPrefs.GetInt("QuestActionIndex");
+
+        //불러온 데이터를 게임 오브젝트에 적용
+        player.transform.position = new Vector3(x, y, 0);
+        questManager.questId = questId;
+        questManager.questActionIndex = questActionIndex;
+
+        //이외에도 퀘스트에 관련된 오브젝트 저장이라든가
+        //인벤토리 저장이 필요 이에 대한 자료 찾아보겠음
     }
 
 }
