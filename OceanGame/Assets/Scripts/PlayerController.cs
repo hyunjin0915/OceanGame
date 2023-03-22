@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         myRigid = GetComponent<Rigidbody2D>();
+        DontDestroyOnLoad(this.gameObject);
     }
 
     // Update is called once per frame
