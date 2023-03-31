@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Singleton<PlayerController>
 {
 
     [SerializeField]
@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     //필요한 컴포넌트들
     private Rigidbody2D myRigid;
     GameObject scanObj;
-    public GameManager manager;
+   // public GameManager manager;
     Vector2 movement; //플레이어 이동시 사용
     Vector3 dirVec; //플레이어가 바라보고 있는방향
 
@@ -22,20 +22,23 @@ public class PlayerController : MonoBehaviour
     float h;
     float v; //애니메이터용 변수
     bool isHorizonMove;
-
+    public override void Awake()
+    {
+        base.Awake();
+    }
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>(); //anim 변수선언
         myRigid = GetComponent<Rigidbody2D>();
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
     }
 
     // Update is called once per frame
     void Update()
     {
-        movement.x = manager.isAction ? 0 :Input.GetAxisRaw("Horizontal");
-        movement.y = manager.isAction ? 0 : Input.GetAxisRaw("Vertical");
+        movement.x = GameManager.Instance.isAction ? 0 :Input.GetAxisRaw("Horizontal");
+        movement.y = GameManager.Instance.isAction ? 0 : Input.GetAxisRaw("Vertical");
 
         //Move Value
         h = Input.GetAxisRaw("Horizontal");
@@ -109,9 +112,9 @@ public class PlayerController : MonoBehaviour
         
 
 
-        if (Input.GetButtonDown("Jump") && scanObj != null&&!manager.isnowTalking) //스페이스바 눌러서 대화 넘기기
+        if (Input.GetButtonDown("Jump") && scanObj != null&&!GameManager.Instance.isnowTalking) //스페이스바 눌러서 대화 넘기기
         {
-            manager.Action(scanObj);
+            GameManager.Instance.Action(scanObj);
         }
 
     }

@@ -6,14 +6,14 @@ using TMPro;
 
 public class GameManager : Singleton<GameManager>
 {
-    public TalkManager talkManager;
+    //public TalkManager talkManager;
     public QuestManager questManager;
-    [SerializeField]
+   // [SerializeField]
     public Image portraitImg;
-    [SerializeField]
+  //  [SerializeField]
     public TextMeshProUGUI talkText; //대화창 텍스트
-    [SerializeField]
-    private GameObject talkPanel; //대화창
+  //  [SerializeField]
+    public GameObject talkPanel; //대화창
     [SerializeField]
     private float textSpeed; //대화글 써지는 속도
 
@@ -27,7 +27,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
-        Debug.Log(questManager.CheckQuest());
+        Debug.Log(QuestManager.Instance.CheckQuest());
         talkText.text = string.Empty;
 
         //게임 시작할때 로딩한 것을 불러옴 여기 수정 필요할듯 로딩버튼을 시작화면에 만들거면 수정필요
@@ -59,7 +59,8 @@ public class GameManager : Singleton<GameManager>
     }
 
     public void Action(GameObject scanObj)
-    { 
+    {
+        Debug.Log("Action 말걸기");
         scanObject = scanObj; //넘겨받은 스캔된 오브젝트의
         ObjData objData = scanObject.GetComponent<ObjData>(); //정보를 가져와서
         Talk(objData.id, objData.isNpc); //Talk함수 호출하고
@@ -70,27 +71,25 @@ public class GameManager : Singleton<GameManager>
 
     void Talk(int id, bool isNpc)
     {
-        int questTalkIndex = questManager.GetQuestTalkIndex(id);
-        string talkData = talkManager.GetTalk(id+ questTalkIndex, talkIndex); //해당하는 대화내용 가져와서 
+        int questTalkIndex = QuestManager.Instance.GetQuestTalkIndex(id);
+        string talkData = TalkManager.Instance.GetTalk(id+ questTalkIndex, talkIndex); //해당하는 대화내용 가져와서 
 
         if (talkData == null) //대화끝나면
         {
             isAction = false; //창없애고
             talkIndex = 0; //인덱스초기화한 다음
-            Debug.Log(questManager.CheckQuest(id)); //대화가 끝나면 퀘스트의 다음 대화로
+            Debug.Log(QuestManager.Instance.CheckQuest(id)); //대화가 끝나면 퀘스트의 다음 대화로
             return; //함수 종료
         }
         if (isNpc)
         {
             talkText.text = string.Empty; //텍스트 비우고
 
-            //int questTalkIndex = questManager.GetQuestTalkIndex(id);
-            //string TalkData = talkManager.GetTalk(id + questTalkIndex, talkIndex);
             string realTalkData = talkData.Split(':')[0];
             StartCoroutine(TypeLine(realTalkData)); //대화창입력 코루틴 실행
 
             portraitImg.color = new Color(1, 1, 1, 1);
-            portraitImg.sprite = talkManager.GetPortrait(id, int.Parse(talkData.Split(':')[1]));
+            portraitImg.sprite = TalkManager.Instance.GetPortrait(id, int.Parse(talkData.Split(':')[1]));
         }
         else
         {
@@ -107,9 +106,6 @@ public class GameManager : Singleton<GameManager>
 
     IEnumerator TypeLine(string talking) //한글자씩 써지는 효과
     {
-      //  int questTalkIndex = questManager.GetQuestTalkIndex(id);
-      //  string TalkData = talkManager.GetTalk(id + questTalkIndex, talkIndex);
-      //  string realTalkData = TalkData.Split(':')[0];
         foreach (char c in talking.ToCharArray())
         {
             isnowTalking = true;
@@ -131,8 +127,8 @@ public class GameManager : Singleton<GameManager>
         //PlayerPrefs : 간단한 데이터 저장기능을 지원하는 클래스
         PlayerPrefs.SetFloat("PlayerX", player.transform.position.x);
         PlayerPrefs.SetFloat("PlayerY", player.transform.position.y);
-        PlayerPrefs.SetFloat("QuestId", questManager.questId);
-        PlayerPrefs.SetFloat("QuestActionIndex", questManager.questActionIndex);
+        PlayerPrefs.SetFloat("QuestId", QuestManager.Instance.questId);
+        PlayerPrefs.SetFloat("QuestActionIndex", QuestManager.Instance.questActionIndex);
         PlayerPrefs.Save(); //레지스트리에 위에있는 플레이어 위치, 퀘스트를 저장해준다.
 
         MeueSet.SetActive(false); //세이브가 되었으므로 메뉴창 꺼짐
@@ -153,8 +149,8 @@ public class GameManager : Singleton<GameManager>
 
         //불러온 데이터를 게임 오브젝트에 적용
         player.transform.position = new Vector3(x, y, 0);
-        questManager.questId = questId;
-        questManager.questActionIndex = questActionIndex;
+        QuestManager.Instance.questId = questId;
+        QuestManager.Instance.questActionIndex = questActionIndex;
 
         //이외에도 퀘스트에 관련된 오브젝트 저장이라든가
         //인벤토리 저장이 필요 이에 대한 자료 찾아보겠음

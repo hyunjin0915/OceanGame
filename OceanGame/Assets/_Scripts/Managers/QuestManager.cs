@@ -2,25 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QuestManager : MonoBehaviour
+public class QuestManager : Singleton<QuestManager>
 {
     public int questId; //지금 진행중인 퀘스트id
     public int questActionIndex; //퀘스트 대화순서 인덱스
     public GameObject[] questObject; //퀘스트용 오브젝트 저장
     Dictionary<int, QuestData> questList;
 
-    void Awake()
+    public override void Awake()
     {
+        base.Awake();
         questList = new Dictionary<int, QuestData>();
         GenerateData();
     }
 
     void GenerateData()
     {
-        questList.Add(10, new QuestData("첫 마을 방문",new int[] {1000} ));
-        questList.Add(20, new QuestData("물약 전달하기1",new int[] {1000} ));
-        questList.Add(30, new QuestData("물약 전달하기2",new int[] {5000, 2000, 1000 } ));
-        questList.Add(40, new QuestData("물약 퀘스트 클리어!",new int[] {0} ));
+        questList.Add(10, new QuestData("마을대화~시하브집대화",new int[] {1000,10000} ));
+        questList.Add(20, new QuestData("타누아대화~레나나소라고동전달",new int[] {2000,4000} ));
+        questList.Add(30, new QuestData("도서관 앞에서 시하브와의 대화",new int[] {1000 } ));
     }
 
     public int GetQuestTalkIndex(int id)
