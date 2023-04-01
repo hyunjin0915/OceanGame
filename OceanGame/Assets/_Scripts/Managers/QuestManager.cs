@@ -59,12 +59,12 @@ public class QuestManager : Singleton<QuestManager>
             case 10:
                 break;
             case 20:
-                if (questActionIndex == 1)
+                //if (questActionIndex == 1)
                     questObject[0].SetActive(true);
                 break;
             case 30:
-                if (questActionIndex ==1)
-                    questObject[0].SetActive(false);
+                // if (questActionIndex ==1)
+                //    questObject[0].SetActive(false);
                 break;
         }
     }

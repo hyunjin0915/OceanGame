@@ -103,7 +103,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 1
   runSpeed: 2
-  manager: {fileID: 0}
   anim: {fileID: 0}
 --- !u!70 &7455064764221745910
 CapsuleCollider2D:
@@ -118,8 +117,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
+  m_Offset: {x: 0.00000003973643, y: -0.0071525574}
+  m_Size: {x: 0.50975287, y: 0.96619034}
   m_Direction: 0
 --- !u!50 &7455064764221745905
 Rigidbody2D:
