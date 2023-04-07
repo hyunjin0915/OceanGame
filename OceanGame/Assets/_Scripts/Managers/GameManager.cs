@@ -10,6 +10,7 @@ public class GameManager : Singleton<GameManager>
     public QuestManager questManager;
    // [SerializeField]
     public Image portraitImg;
+    public Image PlayerportraitImg;
   //  [SerializeField]
     public TextMeshProUGUI talkText; //대화창 텍스트
   //  [SerializeField]
@@ -87,16 +88,31 @@ public class GameManager : Singleton<GameManager>
 
             string realTalkData = talkData.Split(':')[0];
             StartCoroutine(TypeLine(realTalkData)); //대화창입력 코루틴 실행
+            if(int.Parse(talkData.Split(':')[1]) > 10) //만약에플레이어의대사라면
+            {
+                PlayerportraitImg.sprite = TalkManager.Instance.GetPlayerPortrait(int.Parse(talkData.Split(':')[1]));
+                portraitImg.color = new Color(1, 1, 1, 0);
+                PlayerportraitImg.color = new Color(1, 1, 1, 1);
+            }
+            else
+            {
+                portraitImg.sprite = TalkManager.Instance.GetPortrait(id, int.Parse(talkData.Split(':')[1]));
+                portraitImg.color = new Color(1, 1, 1, 1);
+                PlayerportraitImg.color = new Color(1, 1, 1, 0);
+            }
 
-            portraitImg.color = new Color(1, 1, 1, 1);
-            portraitImg.sprite = TalkManager.Instance.GetPortrait(id, int.Parse(talkData.Split(':')[1]));
         }
-        else
+        else //npc외의 물체와의 대화
         {
             talkText.text = string.Empty;
-            StartCoroutine(TypeLine(talkData));
 
-            portraitImg.color = new Color(1, 1, 1, 0);
+            string realTalkData = talkData.Split(':')[0];
+            StartCoroutine(TypeLine(realTalkData));
+
+            portraitImg.color = new Color(1, 1, 1,0);
+
+            PlayerportraitImg.color = new Color(1, 1, 1, 1);
+            PlayerportraitImg.sprite = TalkManager.Instance.GetPlayerPortrait(int.Parse(talkData.Split(':')[1]));
 
         }
 
