@@ -29,6 +29,7 @@ public class PlayerController : Singleton<PlayerController>
     // Start is called before the first frame update
     void Start()
     {
+        //queue = new Queue<string>();
         anim = GetComponent<Animator>(); //anim 변수선언
         myRigid = GetComponent<Rigidbody2D>();
         //DontDestroyOnLoad(this.gameObject);
@@ -150,4 +151,6 @@ public class PlayerController : Singleton<PlayerController>
         else
             scanObj = null;
     }
+
+   
 }
