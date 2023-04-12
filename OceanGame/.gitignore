@@ -3,13 +3,13 @@
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
 
-OceanGame/[Ll]ibrary/
-OceanGame/[Tt]emp/
-OceanGame/[Oo]bj/
-OceanGame/[Bb]uild/
-OceanGame/[Bb]uilds/
-OceanGame/[Ll]ogs/
-OceanGame/[Mm]emoryCaptures/
+**/[Ll]ibrary/
+**/[Tt]emp/
+**/[Oo]bj/
+**/[Bb]uild/
+**/[Bb]uilds/
+**/[Ll]ogs/
+**/[Mm]emoryCaptures/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
