@@ -6,17 +6,14 @@ public class TalkManager : Singleton<TalkManager>
 {
     Dictionary<int, string[]> talkData;
     Dictionary<int, Sprite> protraitData;
-    Dictionary<int, Sprite> PlayerprotraitData;
 
     public Sprite[] portraitArr; //초상화 스프라이트 저장 배열
-    public Sprite[] PlayerportraitArr; //플레이어 초상화 스프라이트 저장 배열
 
     public override void Awake()
     {
         base.Awake();
         talkData = new Dictionary<int, string[]>();
         protraitData = new Dictionary<int, Sprite> ();
-        PlayerprotraitData = new Dictionary<int, Sprite> ();
         GenerateData();
     }
     private void GenerateData()
@@ -30,7 +27,7 @@ public class TalkManager : Singleton<TalkManager>
         talkData.Add(200 , new string[] { "아야;;","이건 뭐지?:" });
 
         //Quest Talk
-        talkData.Add(1000 + 10, new string[] { "정신이 들었니?:0", "이곳은...:13", "이곳은 아틀란티스. 바다가 허락한 자들에게 내어진 작은 마을이란다. " +
+        talkData.Add(1000 + 10, new string[] { "정신이 들었니?:0", "이곳은...:3", "이곳은 아틀란티스. 바다가 허락한 자들에게 내어진 작은 마을이란다. " +
             "우리는 너를 기다리고 있었어.:1","자 어서 일어나렴, 우선 우리 집으로 안내해줄게.:0" });
         talkData.Add(10000 + 10, new string[] { "마시렴, 체력을 회복해주는 아이템이란다:0",
             "체력 회복 아이템을 손에 넣었다!:0","체력 회복 아이템은 인벤토리를 들어가서 클릭하면 먹어질거야:0",
@@ -55,17 +52,15 @@ public class TalkManager : Singleton<TalkManager>
 
 
         //사물
-        talkData.Add(100, new string[] { "(가로등인가..?):0" });
+        talkData.Add(100, new string[] { "특별할 건 없어보인다." });
 
         //초상화 관리...
         //protraitData.Add( 0, portraitArr[0]);
-        PlayerprotraitData.Add(0, PlayerportraitArr[0]);
-        PlayerprotraitData.Add(13, PlayerportraitArr[0]);
 
         protraitData.Add(1000 + 0, portraitArr[0]);
         protraitData.Add(1000 + 1, portraitArr[1]);
         protraitData.Add(1000 + 2, portraitArr[2]);
-        protraitData.Add(1000 + 3, PlayerportraitArr[0]);
+        protraitData.Add(1000 + 3, portraitArr[3]);
 
         protraitData.Add(10000 + 0, portraitArr[0]);
 
@@ -105,9 +100,5 @@ public class TalkManager : Singleton<TalkManager>
     public Sprite GetPortrait(int id, int portraitIndex)
     {
         return protraitData[id + portraitIndex];
-    }
-    public Sprite GetPlayerPortrait(int portraitIndex)
-    {
-        return PlayerprotraitData[portraitIndex];
     }
 }

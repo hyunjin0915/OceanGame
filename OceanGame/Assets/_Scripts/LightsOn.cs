@@ -5,23 +5,20 @@ using UnityEngine;
 public class LightsOn : MonoBehaviour
 {
     public string something;
-    public GameObject[] lighting;
+    public GameObject lighting;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.tag.Equals(something))
         {
-            for (int i = 0; i < lighting.Length; i++)
-            {
-                lighting[i].SetActive(true);
-            }
+            lighting.SetActive(true);
         }
     }
     private void OnTriggerExit2D(Collider2D other)
     {
-        for (int i = 0; i < lighting.Length; i++)
+        if (other.gameObject.tag.Equals(something))
         {
-            lighting[i].SetActive(false);
+            lighting.SetActive(false);
         }
     }
 }
