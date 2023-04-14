@@ -4,26 +4,27 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class GameManager : Singleton<GameManager>
+public class NewGameManager : Singleton<NewGameManager>
 {
-    //public TalkManager talkManager;
-   // public QuestManager questManager;
-   // [SerializeField]
-    public Image portraitImg;
-  //  [SerializeField]
+    public GameObject portraitImg;
     public TextMeshProUGUI talkText; //대화창 텍스트
-  //  [SerializeField]
+                                     //  [SerializeField]
     public GameObject talkPanel; //대화창
     [SerializeField]
     private float textSpeed; //대화글 써지는 속도
+    [SerializeField] float fadeSpeed;
 
     private GameObject scanObject; //앞에있는 물체 판별
     public bool isAction;
     public int talkIndex; //몇번째 문장 가져올지 결정
     public bool isnowTalking; //말하고있는데 스페이스바 눌러서 다음 문자열로 넘어가버리지 않게
-    
+
     public GameObject MeueSet; //메뉴창
     public GameObject player; //플레이어
+
+    Dialogue[] dialogues;
+    int lineCount = 0; //대화 카운트
+    int contextCount = 0; //대사 카운트
 
     private void Start()
     {
@@ -54,65 +55,105 @@ public class GameManager : Singleton<GameManager>
             Time.timeScale = 0f;
 
         }
-           
-        
+
+
     }
 
     public void Action(GameObject scanObj)
     {
-        Debug.Log("Action 말걸기");
         scanObject = scanObj; //넘겨받은 스캔된 오브젝트의
         ObjData objData = scanObject.GetComponent<ObjData>(); //정보를 가져와서
-        Talk(objData.id, objData.isNpc); //Talk함수 호출하고
-       
+        NewTalk(scanObj.transform.GetComponent<InteractionEvent>().GetDialogue());
+
+        //Talk(objData.id, objData.isNpc); //Talk함수 호출하고
+
         talkPanel.SetActive(isAction); //panel 활성화/비활성화
 
     }
-
-    void Talk(int id, bool isNpc)
+    void NewTalk(Dialogue[] p_dialogue)
     {
-        int questTalkIndex = QuestManager.Instance.GetQuestTalkIndex(id);
-        string talkData = TalkManager.Instance.GetTalk(id+ questTalkIndex, talkIndex); //해당하는 대화내용 가져와서 
+        dialogues = p_dialogue;
+        
+        string talkData = string.Empty;
 
-        if (talkData == null) //대화끝나면
+        if(++contextCount< dialogues[lineCount].contexts.Length)
         {
-            isAction = false; //창없애고
-            talkIndex = 0; //인덱스초기화한 다음
-            Debug.Log(QuestManager.Instance.CheckQuest(id)); //대화가 끝나면 퀘스트의 다음 대화로
-            return; //함수 종료
-        }
-        if (isNpc)
-        {
-            talkText.text = string.Empty; //텍스트 비우고
-
-            string realTalkData = talkData.Split(':')[0];
-            StartCoroutine(TypeLine(realTalkData)); //대화창입력 코루틴 실행
-
-            portraitImg.color = new Color(1, 1, 1, 1);
-            portraitImg.sprite = TalkManager.Instance.GetPortrait(id, int.Parse(talkData.Split(':')[1]));
+            talkText.text = string.Empty;
+            talkData = dialogues[lineCount].contexts[contextCount];
+            StartCoroutine(TypeLine(talkData)); //대화창입력 코루틴 실행
         }
         else
         {
             talkText.text = string.Empty;
-            StartCoroutine(TypeLine(talkData));
-
-            portraitImg.color = new Color(1, 1, 1, 0);
-
+            if(++lineCount<dialogues.Length)
+            {
+                contextCount = 0;
+                talkData = dialogues[lineCount].contexts[contextCount];
+                StartCoroutine(TypeLine(talkData)); //대화창입력 코루틴 실행
+            }
+            else
+            {
+                isAction = false;
+                contextCount = 0;
+                lineCount = 0;
+                return;
+            }
         }
-
         isAction = true;
-        talkIndex++; //다음 문장으로
     }
 
+    void ChangeSprite()
+    {
+        if(dialogues[lineCount].spriteName[contextCount]!="")
+        {
+            Debug.Log(dialogues[lineCount].spriteName[contextCount]);
+            StartCoroutine(SpriteChangeCoroutine(dialogues[lineCount].spriteName[contextCount]));
+        }
+    }
     IEnumerator TypeLine(string talking) //한글자씩 써지는 효과
     {
-        foreach (char c in talking.ToCharArray())
+        ChangeSprite();
+        string t_replace = talking.Replace("'", ",");
+        foreach (char c in t_replace.ToCharArray())
         {
             isnowTalking = true;
             talkText.text += c;
             yield return new WaitForSeconds(textSpeed);
         }
         isnowTalking = false;
+    }
+    public IEnumerator SpriteChangeCoroutine( string p_SpriteName)
+    {
+        Image thisImage = portraitImg.GetComponent<Image>();
+        //SpriteRenderer t_spriteRenderer = portraitImg.GetComponent<SpriteRenderer>();
+        Sprite t_sprite = Resources.Load("Characters/" + p_SpriteName, typeof(Sprite)) as Sprite;
+
+        if (!CheckSameSprite(thisImage.sprite, t_sprite))
+        {
+            Color t_color = thisImage.color;
+            t_color.a = 0;
+            thisImage.color = t_color;
+
+            thisImage.sprite = t_sprite;
+
+            while (t_color.a < 1)
+            {
+                t_color.a += fadeSpeed;
+                thisImage.color = t_color;
+                yield return null;
+            }
+        }
+    }
+    bool CheckSameSprite(Sprite p_targetSprite, Sprite p_Sprite)
+    {
+        if (p_targetSprite == p_Sprite)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     //게임종료 함수
