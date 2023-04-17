@@ -1,47 +1,57 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class DialogueParser : MonoBehaviour
 {
-    public Dialogue[] Parse(string _CSVFileName)
+
+    public void Parse(string _CSVFileName)
     {
-        List<Dialogue> dialogueList = new List<Dialogue>();//´ë»ç ¸®½ºÆ® 
-        TextAsset csvData = Resources.Load<TextAsset>(_CSVFileName); //csv ÆÄÀÏ °¡Á®¿È
+
+        List<Dialogue> dialogueList = new List<Dialogue>();//ëŒ€ì‚¬ ë¦¬ìŠ¤íŠ¸ 
+        TextAsset csvData = Resources.Load<TextAsset>(_CSVFileName); //csv íŒŒì¼ ê°€ì ¸ì˜´
 
         string[] data = csvData.text.Split(new char[] { '\n' });
 
-        for (int i = 1; i < data.Length;)
+        for (int i = 1; i < data.Length;i++)
         {
-            string[] row = data[i].Split(new char[] { ',' }); //,´ÜÀ§·Î ÂÉ°³ÁÜ
+            string[] row = data[i].Split(new char[] { ',' }); //,ë‹¨ìœ„ë¡œ ìª¼ê°œì¤Œ
+          
+            if (row[0].Trim().Equals("end") || row[2].Trim().Equals("")) continue;
 
             Dialogue dialogue = new Dialogue();
 
-            dialogue.name = row[1];
-           
-            List<string> contextList = new List<string>(); //Å©±â¸ğ¸£´Ï±î¸®½ºÆ®¿¡ÀúÀå
-            List<string> spriteList = new List<string>();
+            dialogue.talkId = int.Parse(row[2].Trim());
 
-            do
+            Debug.Log( dialogue.talkId + "/");
+            int loopnum = 0;
+            while(!row[2].Trim().Equals("end"))
             {
-                contextList.Add(row[2]);
-                spriteList.Add(row[3]);
-               
-                if (++i < data.Length)
+                if (loopnum++ > 10000) throw new Exception("Infinite loop");
+
+                List<string> contextList = new List<string>(); //í¬ê¸°ëª¨ë¥´ë‹ˆê¹Œë¦¬ìŠ¤íŠ¸ì—ì €ì¥
+                List<string> spriteList = new List<string>();
+                do
                 {
-                    row = data[i].Split(new char[] { ',' });
-                }
-                else break; //i°¡ ´õÄ¿Áö¸éºüÁ®³ª¿À°Ô
+                    contextList.Add(row[4].ToString());
+                    spriteList.Add(row[5].ToString());
+               
+                    if (++i < data.Length)
+                    {
+                        row = data[i].Split(new char[] { ',' });
+                    }
+                    else break; //iê°€ ë”ì»¤ì§€ë©´ë¹ ì ¸ë‚˜ì˜¤ê²Œ
 
-            } while (row[0].ToString() == "");
+                } while (row[2] == ""&&!row[2].Equals("end"));
 
-            dialogue.contexts = contextList.ToArray();//¹è¿­·Î¹Ù²ã¼­ ³Ö¾îÁÖ°í
-            dialogue.spriteName = spriteList.ToArray();
-            dialogueList.Add(dialogue);
-
+                dialogue.contexts = contextList.ToArray();//ë°°ì—´ë¡œë°”ê¿”ì„œ ë„£ì–´ì£¼ê³ 
+                dialogue.spriteName = spriteList.ToArray();
+                //dialogueList.Add(dialogue);
+            }
+            DatabaseManager.Instance.QuestDic.Add(dialogue.talkId, dialogue);
+            
         }
-
-        return dialogueList.ToArray(); //´Ù½Ã ¹è¿­ÇüÅÂ·Î ¹Ù²ã¼­ ¹İÈ¯ÇØÁÖ±â
     }
 
 }

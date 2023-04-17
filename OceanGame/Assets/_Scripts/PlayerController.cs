@@ -11,16 +11,16 @@ public class PlayerController : Singleton<PlayerController>
     private float runSpeed;
     private float applyRunSpeed;
 
-    //ÇÊ¿äÇÑ ÄÄÆ÷³ÍÆ®µé
+    //í•„ìš”í•œ ì»´í¬ë„ŒíŠ¸ë“¤
     private Rigidbody2D myRigid;
     GameObject scanObj;
    // public GameManager manager;
-    Vector2 movement; //ÇÃ·¹ÀÌ¾î ÀÌµ¿½Ã »ç¿ë
-    Vector3 dirVec; //ÇÃ·¹ÀÌ¾î°¡ ¹Ù¶óº¸°í ÀÖ´Â¹æÇâ
+    Vector2 movement; //í”Œë ˆì´ì–´ ì´ë™ì‹œ ì‚¬ìš©
+    Vector3 dirVec; //í”Œë ˆì´ì–´ê°€ ë°”ë¼ë³´ê³  ìˆëŠ”ë°©í–¥
 
-    public Animator anim;// ¾Ö´Ï¸ŞÀÌÅÍ º¯¼ö
+    public Animator anim;// ì• ë‹ˆë©”ì´í„° ë³€ìˆ˜
     float h;
-    float v; //¾Ö´Ï¸ŞÀÌÅÍ¿ë º¯¼ö
+    float v; //ì• ë‹ˆë©”ì´í„°ìš© ë³€ìˆ˜
     bool isHorizonMove;
     public override void Awake()
     {
@@ -29,7 +29,7 @@ public class PlayerController : Singleton<PlayerController>
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animator>(); //anim º¯¼ö¼±¾ğ
+        anim = GetComponent<Animator>(); //anim ë³€ìˆ˜ì„ ì–¸
         myRigid = GetComponent<Rigidbody2D>();
         //DontDestroyOnLoad(this.gameObject);
     }
@@ -92,7 +92,7 @@ public class PlayerController : Singleton<PlayerController>
             isHorizonMove = (hDown || hUp) || (vUp && h != 0);
         }
 
-        //¾Ö´Ï¸ŞÀÌ¼Ç
+        //ì• ë‹ˆë©”ì´ì…˜
         if (anim.GetInteger("hAxisRaw") != h)
         {
             anim.SetBool("isChange", true);
@@ -112,7 +112,7 @@ public class PlayerController : Singleton<PlayerController>
         
 
 
-        if (Input.GetButtonDown("Jump") && scanObj != null&&!GameManager.Instance.isnowTalking) //½ºÆäÀÌ½º¹Ù ´­·¯¼­ ´ëÈ­ ³Ñ±â±â
+        if (Input.GetButtonDown("Jump") && scanObj != null&&!GameManager.Instance.isnowTalking) //ìŠ¤í˜ì´ìŠ¤ë°” ëˆŒëŸ¬ì„œ ëŒ€í™” ë„˜ê¸°ê¸°
         {
             NewGameManager.Instance.Action(scanObj);
             //GameManager.Instance.Action(scanObj);
@@ -126,7 +126,7 @@ public class PlayerController : Singleton<PlayerController>
         Run();
         DrawRay();
     }
-    void Move() //ÇÃ·¹ÀÌ¾î ÀÌµ¿
+    void Move() //í”Œë ˆì´ì–´ ì´ë™
     {
         myRigid.MovePosition(myRigid.position + movement * (walkSpeed + applyRunSpeed) * Time.fixedDeltaTime);
     }
@@ -142,11 +142,11 @@ public class PlayerController : Singleton<PlayerController>
     void DrawRay()
     {
         Debug.DrawRay(myRigid.position, dirVec, new Color(0, 1, 0));
-        RaycastHit2D rayHit = Physics2D.Raycast(myRigid.position, dirVec, 0.7f, LayerMask.GetMask("Object")); //ÀÌ¹Ì ÇÃ·¹ÀÌ¾î´Â collider ÀÖÀ½. ÇÃ·¹ÀÌ¾î Á¦¿Ü cast¸¦ À§ÇØ ·¹ÀÌ¾î ³ª´©¾î¼­ °ü¸®
+        RaycastHit2D rayHit = Physics2D.Raycast(myRigid.position, dirVec, 0.7f, LayerMask.GetMask("Object")); //ì´ë¯¸ í”Œë ˆì´ì–´ëŠ” collider ìˆìŒ. í”Œë ˆì´ì–´ ì œì™¸ castë¥¼ ìœ„í•´ ë ˆì´ì–´ ë‚˜ëˆ„ì–´ì„œ ê´€ë¦¬
 
         if (rayHit.collider != null)
         {
-            scanObj = rayHit.collider.gameObject; //raycastµÈ ¿ÀºêÁ§Æ®¸¦ º¯¼ö·Î ÀúÀåÇÏ¿© È°¿ë
+            scanObj = rayHit.collider.gameObject; //raycastëœ ì˜¤ë¸Œì íŠ¸ë¥¼ ë³€ìˆ˜ë¡œ ì €ì¥í•˜ì—¬ í™œìš©
         }
         else
             scanObj = null;

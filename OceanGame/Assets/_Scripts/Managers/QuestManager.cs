@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class QuestManager : Singleton<QuestManager>
 {
-    public int questId; //Áö±İ ÁøÇàÁßÀÎ Äù½ºÆ®id
-    public int questActionIndex; //Äù½ºÆ® ´ëÈ­¼ø¼­ ÀÎµ¦½º
-    public GameObject[] questObject; //Äù½ºÆ®¿ë ¿ÀºêÁ§Æ® ÀúÀå
+    public int questId; //ì§€ê¸ˆ ì§„í–‰ì¤‘ì¸ í€˜ìŠ¤íŠ¸id
+    public int questActionIndex=0; //í€˜ìŠ¤íŠ¸ ëŒ€í™”ìˆœì„œ ì¸ë±ìŠ¤
+    public GameObject[] questObject; //í€˜ìŠ¤íŠ¸ìš© ì˜¤ë¸Œì íŠ¸ ì €ì¥
     Dictionary<int, QuestData> questList;
 
     public override void Awake()
@@ -18,26 +18,28 @@ public class QuestManager : Singleton<QuestManager>
 
     void GenerateData()
     {
-        questList.Add(10, new QuestData("¸¶À»´ëÈ­~½ÃÇÏºêÁı´ëÈ­",new int[] {1000,10000} ));
-        questList.Add(20, new QuestData("Å¸´©¾Æ´ëÈ­~·¹³ª³ª¼Ò¶ó°íµ¿Àü´Ş",new int[] {2000,4000} ));
-        questList.Add(30, new QuestData("µµ¼­°ü ¾Õ¿¡¼­ ½ÃÇÏºê¿ÍÀÇ ´ëÈ­",new int[] {1000 } ));
+        questList.Add(10, new QuestData("ë§ˆì„ëŒ€í™”~ì‹œí•˜ë¸Œì§‘ëŒ€í™”",new int[] {1000,10000} ));
+        questList.Add(20, new QuestData("íƒ€ëˆ„ì•„ëŒ€í™”~ë ˆë‚˜ë‚˜ì†Œë¼ê³ ë™ì „ë‹¬",new int[] {3000,2000,4000} ));
+        questList.Add(30, new QuestData("ë„ì„œê´€ ì•ì—ì„œ ì‹œí•˜ë¸Œì™€ì˜ ëŒ€í™”",new int[] {1000 } ));
     }
 
     public int GetQuestTalkIndex(int id)
     {
+        //return questId ;
         return questId + questActionIndex;
-        //Äù½ºÆ® id + Äù½ºÆ® ´ëÈ­ ¼ø¼­ = Äù½ºÆ® ´ëÈ­id
+        //í€˜ìŠ¤íŠ¸ id + í€˜ìŠ¤íŠ¸ ëŒ€í™” ìˆœì„œ = í€˜ìŠ¤íŠ¸ ëŒ€í™”id
     }
 
     public string CheckQuest(int id)
     {
-        if (id == questList[questId].npcId[questActionIndex]) //ÇöÀç Äù½ºÆ®¿¡ ÇØ´çÇÏ´Â npcÀÏ °æ¿ì¿¡¸¸ ´ëÈ­¼ø¼­ ³Ñ¾î°¡µµ·Ï
-            questActionIndex++; //´ëÈ­ ÁøÇàÀ» À§ÇØ Äù½ºÆ® ´ëÈ­¼ø¼­ ¿Ã¸®´Â ÇÔ¼ö
+        if (id == questList[questId].npcId[questActionIndex]) //í˜„ì¬ í€˜ìŠ¤íŠ¸ì— í•´ë‹¹í•˜ëŠ” npcì¼ ê²½ìš°ì—ë§Œ ëŒ€í™”ìˆœì„œ ë„˜ì–´ê°€ë„ë¡
+            questActionIndex++; //ëŒ€í™” ì§„í–‰ì„ ìœ„í•´ í€˜ìŠ¤íŠ¸ ëŒ€í™”ìˆœì„œ ì˜¬ë¦¬ëŠ” í•¨ìˆ˜
 
-        ControlObject(); //Äù½ºÆ® ¿ÀºêÁ§Æ® °ü¸®¿ë ÇÔ¼ö
+        ControlObject(); //í€˜ìŠ¤íŠ¸ ì˜¤ë¸Œì íŠ¸ ê´€ë¦¬ìš© í•¨ìˆ˜
 
-        if (questActionIndex == questList[questId].npcId.Length) //Äù½ºÆ® ´ëÈ­¼ø¼­°¡ ³¡¿¡ µµ´ŞÇßÀ» ¶§ ´ÙÀ½ Äù½ºÆ®·Î
+        if (questActionIndex == questList[questId].npcId.Length) //í€˜ìŠ¤íŠ¸ ëŒ€í™”ìˆœì„œê°€ ëì— ë„ë‹¬í–ˆì„ ë•Œ ë‹¤ìŒ í€˜ìŠ¤íŠ¸ë¡œ
             NextQuest();
+        
 
         return questList[questId].questName;
     }
@@ -46,13 +48,18 @@ public class QuestManager : Singleton<QuestManager>
         return questList[questId].questName;
     }
 
-    void NextQuest() //´ÙÀ½Äù½ºÆ®·Î ³Ñ¾î°¡±â
+    void NextQuest() //ë‹¤ìŒí€˜ìŠ¤íŠ¸ë¡œ ë„˜ì–´ê°€ê¸°
     {
         questId += 10;
         questActionIndex = 0;
+        if (questList.Count * 10 < questId) EndQuest();
     }
-
-    void ControlObject() //Äù½ºÆ® ¿ÀºêÁ§Æ® °ü¸®¿ë ÇÔ¼ö
+    void EndQuest()
+    {
+        questId = 10;
+        //ë§ˆì§€ë§‰í€˜ìŠ¤íŠ¸ê¹Œì§€ ì™„ë£Œí•˜ë©´ ë‹¤ì‹œ ì²˜ìŒìœ¼ë¡œ ëŒì•„ì˜¤ê²Œ í•¨ ì¶”í›„ ìˆ˜ì • í•„ìš”
+    }
+    void ControlObject() //í€˜ìŠ¤íŠ¸ ì˜¤ë¸Œì íŠ¸ ê´€ë¦¬ìš© í•¨ìˆ˜
     {
         switch(questId)
         {

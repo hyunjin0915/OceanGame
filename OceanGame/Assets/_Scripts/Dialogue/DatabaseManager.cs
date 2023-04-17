@@ -3,39 +3,44 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DatabaseManager : MonoBehaviour
+public class DatabaseManager : Singleton<DatabaseManager>
 {
-    public static DatabaseManager instance;
-
     [SerializeField] string csv_FileName;
 
-    Dictionary<int, Dialogue> dialogueDic = new Dictionary<int, Dialogue>();
+    public  Dictionary<int, Dialogue> QuestDic = new ();
 
-    public static bool isFinish = false; //ÀüºÎ ÆÄ½ÌµÇ¾î ÀúÀåµÇ¾ú´ÂÁö ¿©ºÎ 
+    public static bool isFinish = false; //ì „ë¶€ íŒŒì‹±ë˜ì–´ ì €ì¥ë˜ì—ˆëŠ”ì§€ ì—¬ë¶€ 
 
-    private void Awake()
+
+    public override void  Awake()
     {
-        if (instance == null)
+        Debug.Log("ì–´ì›¨ì´í¬í˜¸ì¶œ");
+        base.Awake();
+        gameObject.GetComponent<DialogueParser>().Parse(csv_FileName);
+
+        isFinish = true;
+        if (isFinish) Debug.Log("íŒŒì‹± ì™„");
+
+    }
+    public Dialogue GetDialogue(int _talkId)
+    {
+        if (!QuestDic.ContainsKey(_talkId))
         {
-            instance = this;
-            DialogueParser theParser = GetComponent<DialogueParser>();
-            Dialogue[] dialogues = theParser.Parse(csv_FileName);
-            for (int i = 0; i < dialogues.Length; i++)
+            //í•´ë‹¹ í€˜ìŠ¤íŠ¸ ì§„í–‰ ìˆœì„œ ëŒ€ì‚¬ê°€ ì—†ì„ ë•Œ...
+            if (!QuestDic.ContainsKey(_talkId - _talkId % 10))
             {
-                dialogueDic.Add(i + 1, dialogues[i]); //´õ Á÷°üÀûÀÌ±â À§ÇØ 1¹øÂ° ÀÎµ¦½ººÎÅÍ ÀúÀå
+                //í€˜ìŠ¤íŠ¸ ë§¨ ì²˜ìŒ ëŒ€ì‚¬ë§ˆì € ì—†ì„ ë•Œ - ê¸°ë³¸ëŒ€ì‚¬ë¥¼ ê°€ì§€ê³ ì˜¤ê¸°
+                return GetDialogue(_talkId - _talkId % 100);
             }
-            isFinish = true;
-        }
-    }
+            else
+            {
+                return GetDialogue(_talkId - _talkId % 10);
+            }
 
-    public Dialogue[] GetDialogue(int _StartNum, int _EndNum)
-    {
-        List<Dialogue> dialogueList = new List<Dialogue>();
-        for (int i = 0; i < _EndNum - _StartNum; i++)
-        {
-            dialogueList.Add(dialogueDic[i + _StartNum]);
         }
-        return dialogueList.ToArray();
-    }
+       
+            return QuestDic[_talkId];
 
+    }
+   
 }

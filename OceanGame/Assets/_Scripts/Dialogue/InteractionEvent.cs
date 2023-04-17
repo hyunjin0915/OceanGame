@@ -5,12 +5,12 @@ using UnityEngine;
 public class InteractionEvent : MonoBehaviour
 {
     [SerializeField] DialogueEvent dialogue;
-
-    public Dialogue[] GetDialogue()
+    
+   /* public Dialogue[] GetDialogue(int npcId)
     {
-        // ¸î¹øÂ°ÁÙÀ» °¡Á®¿ÃÁö ÀÛ¼º
-        dialogue.dialogues = DatabaseManager.instance.GetDialogue((int)dialogue.line.x, (int)dialogue.line.y);
+        // ëª‡ë²ˆì§¸ì¤„ì„ ê°€ì ¸ì˜¬ì§€ ì‘ì„±
+        dialogue.dialogues = DatabaseManager.Instance.GetDialogue(npcId);
 
         return dialogue.dialogues;
-    }
+    }*/
 }

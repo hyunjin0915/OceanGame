@@ -6,20 +6,29 @@ using UnityEngine.UI;
 [System.Serializable]
 public class Dialogue
 {
-    [Tooltip("´ë»ç Ä¡´Â Ä³¸¯ÅÍ ÀÌ¸§")]
+    [Tooltip("ëŒ€ì‚¬ ì¹˜ëŠ” ìºë¦­í„° ì´ë¦„")]
     public string name;
-    [Tooltip("´ë»ç³»¿ë")]
+    [Tooltip("ëŒ€ì‚¬ë‚´ìš©")]
     public string[] contexts;
+    [Tooltip("ì´ˆìƒí™”ì´ë¯¸ì§€")]
     public GameObject portraitImg;
+    [Tooltip("ëŒ€í™”ID")]
+    public int talkId;
+   // [Tooltip("npc Id")]
+   // public int NpcId;
+    //public int questId;
 
     [HideInInspector]
     public string[] spriteName;
+
+
 }
 [System.Serializable]
 public class DialogueEvent
 {
-    public string name; //ÀÌ°Ô ¾î¶² ÀÌº¥Æ®ÀÎÁö nameÀ¸·Î ¸í½Ã
+    public string eventId; //ì´ê²Œ ì–´ë–¤ ì´ë²¤íŠ¸ì¸ì§€ nameìœ¼ë¡œ ëª…ì‹œ
 
-    public Vector2 line; //X~Y±îÁöÀÇ ´ë»ç ÃßÃâÇØ¼­ ²¨³»¿À´Â ¿ªÇÒ
+   // public Vector2 line; //X~Yê¹Œì§€ì˜ ëŒ€ì‚¬ ì¶”ì¶œí•´ì„œ êº¼ë‚´ì˜¤ëŠ” ì—­í• 
     public Dialogue[] dialogues;
 }
+
