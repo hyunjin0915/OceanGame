@@ -7,7 +7,7 @@ using TMPro;
 public class GameManager : Singleton<GameManager>
 {
     //public TalkManager talkManager;
-    public QuestManager questManager;
+   // public QuestManager questManager;
    // [SerializeField]
     public Image portraitImg;
   //  [SerializeField]
