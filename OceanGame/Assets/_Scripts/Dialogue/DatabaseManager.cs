@@ -16,10 +16,12 @@ public class DatabaseManager : Singleton<DatabaseManager>
     {
         Debug.Log("어웨이크호출");
         base.Awake();
-        gameObject.GetComponent<DialogueParser>().Parse(csv_FileName);
-
-        isFinish = true;
-        if (isFinish) Debug.Log("파싱 완");
+        if (!isFinish)
+        {
+            gameObject.GetComponent<DialogueParser>().Parse(csv_FileName);
+            isFinish = true;
+            if (isFinish) Debug.Log("파싱 완");
+        }
 
     }
     public Dialogue GetDialogue(int _talkId)

@@ -22,7 +22,6 @@ public class NewGameManager : Singleton<NewGameManager>
     public GameObject MeueSet; //메뉴창
     public GameObject player; //플레이어
 
-    int lineCount = 0; //대화 카운트
     int contextCount = 0; //대사 카운트
 
     Dialogue dialogues;
@@ -32,12 +31,13 @@ public class NewGameManager : Singleton<NewGameManager>
         talkText.text = string.Empty;
 
         //게임 시작할때 로딩한 것을 불러옴 여기 수정 필요할듯 로딩버튼을 시작화면에 만들거면 수정필요
-        GameLoad();
+       //GameLoad();
     }
 
     public override void Awake()
     {
         base.Awake();
+        Debug.Log("게임메니저 awake 호출");
     }
     void Update()
     {
@@ -62,6 +62,11 @@ public class NewGameManager : Singleton<NewGameManager>
     public void Action(GameObject scanObj)
     {
         scanObject = scanObj; //넘겨받은 스캔된 오브젝트의
+        if(scanObj.CompareTag("Gate"))
+        {
+            scanObj.GetComponent<NewSceneTransition>().SceneTransition();
+            return;
+        }
         ObjData objData = scanObject.GetComponent<ObjData>(); //정보를 가져와서
         int questTalkIndex = QuestManager.Instance.GetQuestTalkIndex(objData.id);
         Dialogue dialoguess = DatabaseManager.Instance.GetDialogue(objData.id + questTalkIndex);
