@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 055e3766e025fc14fbdcc25f9de7e5ec
+guid: aa38e6a9e306c8c46a28d25e4436f08c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -105,13 +105,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: front_0
+      name: save_ui_02_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
+        x: 663
+        y: 669
+        width: 1031
+        height: 221
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,20 +119,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 76de13a097d0c92459c75925380ff3eb
-      internalID: -883964160
+      spriteID: d4a22aad4ab577444822e12b2f64e6bb
+      internalID: 1081646331
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: front_1
+      name: save_ui_02_1
       rect:
         serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
+        x: 663
+        y: 434
+        width: 1021
+        height: 221
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,20 +140,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ee1b572841b851e42800e9df9aa2eede
-      internalID: -724298479
+      spriteID: eaa79924bade3fa43b3a22b464d13324
+      internalID: 894030116
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: front_2
+      name: save_ui_02_2
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
+        x: 663
+        y: 193
+        width: 1021
+        height: 221
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -161,29 +161,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0e8b399387f71a14cb27cd3ac866d226
-      internalID: -1154955976
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: front_3
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e0d54023600a75a4d84da3f6643cd039
-      internalID: -1457338209
+      spriteID: 71288d904461af046937f7efb03b6f6d
+      internalID: -1036693702
       vertices: []
       indices: 
       edges: []
@@ -199,10 +178,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      front_3: -1457338209
-      front_1: -724298479
-      front_0: -883964160
-      front_2: -1154955976
+      save_ui_02_2: -1036693702
+      save_ui_02_0: 1081646331
+      save_ui_02_1: 894030116
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

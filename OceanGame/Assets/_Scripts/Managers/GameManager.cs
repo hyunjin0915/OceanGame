@@ -21,9 +21,19 @@ public class GameManager : Singleton<GameManager>
     public bool isAction;
     public int talkIndex; //몇번째 문장 가져올지 결정
     public bool isnowTalking; //말하고있는데 스페이스바 눌러서 다음 문자열로 넘어가버리지 않게
-    
-    public GameObject MeueSet; //메뉴창
+
+   
     public GameObject player; //플레이어
+
+    public string sceneName; //씬 이름
+    public string mapName; //맵 이름
+
+    public string curCharacterName; //현재 캐릭터 이름
+    public int curLv; //현재 레벨
+    public int curHp; //현재 체력
+    public float playTime = 0;
+
+
 
     private void Start()
     {
@@ -31,33 +41,34 @@ public class GameManager : Singleton<GameManager>
         talkText.text = string.Empty;
 
         //게임 시작할때 로딩한 것을 불러옴 여기 수정 필요할듯 로딩버튼을 시작화면에 만들거면 수정필요
-        GameLoad();
+
+        //GameLoad();
+
     }
 
     public override void Awake()
     {
+
         base.Awake();
 
     }
     void Update()
     {
+
+
         //ESC키를 눌렀을 때 메뉴창이 나오도록 함
         if (Input.GetButtonDown("Cancel"))
         {
-            if (MeueSet.activeSelf) //만약 메뉴가 커져있을 경우에
-            {
-                MeueSet.SetActive(false); //꺼진다.
-                Time.timeScale = 1f; //게임 속도를 1배속으로 전환한다.
-            }
-            else //아니라면
-                MeueSet.SetActive(true); //MeueSet 활성화
+            UIManager.Instance.SetUIOn(UIManager.Instance.menuSet);
+
             //게임 속도를 0배속으로 전환한다.
             Time.timeScale = 0f;
 
         }
-           
-        
+
     }
+
+
 
     public void Action(GameObject scanObj)
     {
@@ -122,39 +133,7 @@ public class GameManager : Singleton<GameManager>
         Application.Quit();
     }
 
-    //게임 저장 함수
-    public void GameSave()
-    {
-        //PlayerPrefs : 간단한 데이터 저장기능을 지원하는 클래스
-        PlayerPrefs.SetFloat("PlayerX", player.transform.position.x);
-        PlayerPrefs.SetFloat("PlayerY", player.transform.position.y);
-        PlayerPrefs.SetFloat("QuestId", QuestManager.Instance.questId);
-        PlayerPrefs.SetFloat("QuestActionIndex", QuestManager.Instance.questActionIndex);
-        PlayerPrefs.Save(); //레지스트리에 위에있는 플레이어 위치, 퀘스트를 저장해준다.
 
-        MeueSet.SetActive(false); //세이브가 되었으므로 메뉴창 꺼짐
-    }
 
-    //게임 불러오기 함수
-    public void GameLoad()
-    {
-        //최초 게임 실행했을 땐 데이터가 없으므로 예외처리 로직 작성 
-        if (!PlayerPrefs.HasKey("PlayerX"))
-            return; //로드를 하지 말라는 것
-
-        //게임데이터 저장한 것을 불러옴
-        float x = PlayerPrefs.GetFloat("PlayerX");
-        float y = PlayerPrefs.GetFloat("PlayerY");
-        int questId = PlayerPrefs.GetInt("QuestId");
-        int questActionIndex = PlayerPrefs.GetInt("QuestActionIndex");
-
-        //불러온 데이터를 게임 오브젝트에 적용
-        player.transform.position = new Vector3(x, y, 0);
-        QuestManager.Instance.questId = questId;
-        QuestManager.Instance.questActionIndex = questActionIndex;
-
-        //이외에도 퀘스트에 관련된 오브젝트 저장이라든가
-        //인벤토리 저장이 필요 이에 대한 자료 찾아보겠음
-    }
-
+    //기존에 있던 세이브, 로드 기능을 세이브매니저에 옮겼음!
 }
