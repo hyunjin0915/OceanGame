@@ -24,7 +24,7 @@ public class DialogueParser : MonoBehaviour
 
             dialogue.talkId = int.Parse(row[2].Trim());
 
-            Debug.Log( dialogue.talkId + "/");
+           //Debug.Log( dialogue.talkId + "/");
             int loopnum = 0;
             while(!row[2].Trim().Equals("end"))
             {

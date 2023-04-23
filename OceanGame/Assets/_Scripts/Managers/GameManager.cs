@@ -21,6 +21,7 @@ public class GameManager : Singleton<GameManager>
     public bool isAction;
     public int talkIndex; //몇번째 문장 가져올지 결정
     public bool isnowTalking; //말하고있는데 스페이스바 눌러서 다음 문자열로 넘어가버리지 않게
+
    
     public GameObject player; //플레이어
 
@@ -33,27 +34,33 @@ public class GameManager : Singleton<GameManager>
     public float playTime = 0;
 
 
+
     private void Start()
     {
         Debug.Log(QuestManager.Instance.CheckQuest());
         talkText.text = string.Empty;
 
         //게임 시작할때 로딩한 것을 불러옴 여기 수정 필요할듯 로딩버튼을 시작화면에 만들거면 수정필요
+
         //GameLoad();
+
     }
 
     public override void Awake()
     {
 
         base.Awake();
+
     }
     void Update()
     {
+
 
         //ESC키를 눌렀을 때 메뉴창이 나오도록 함
         if (Input.GetButtonDown("Cancel"))
         {
             UIManager.Instance.SetUIOn(UIManager.Instance.menuSet);
+
             //게임 속도를 0배속으로 전환한다.
             Time.timeScale = 0f;
 
@@ -125,6 +132,7 @@ public class GameManager : Singleton<GameManager>
     {
         Application.Quit();
     }
+
 
 
     //기존에 있던 세이브, 로드 기능을 세이브매니저에 옮겼음!

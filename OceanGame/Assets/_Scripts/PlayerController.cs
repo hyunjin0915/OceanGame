@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : Singleton<PlayerController>
 {
+    public string fromMapName; //transferMapName 변수 값 저장용
+    public string toMapName; //transferMapName 변수 값 저장용
 
     [SerializeField]
     private float walkSpeed;

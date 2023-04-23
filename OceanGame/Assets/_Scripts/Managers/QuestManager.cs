@@ -67,7 +67,7 @@ public class QuestManager : Singleton<QuestManager>
                 break;
             case 20:
                 //if (questActionIndex == 1)
-                    questObject[0].SetActive(true);
+                   // questObject[0].SetActive(true);
                 break;
             case 30:
                 // if (questActionIndex ==1)
