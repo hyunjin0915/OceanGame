@@ -7,7 +7,7 @@ public class QuestManager : Singleton<QuestManager>
     public int questId; //지금 진행중인 퀘스트id
     public int questActionIndex=0; //퀘스트 대화순서 인덱스
     public GameObject[] questObject; //퀘스트용 오브젝트 저장
-    Dictionary<int, QuestData> questList;
+    public Dictionary<int, QuestData> questList;
 
     public override void Awake()
     {
