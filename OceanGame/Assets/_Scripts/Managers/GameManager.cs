@@ -11,82 +11,87 @@ public class GameManager : Singleton<GameManager>
    // [SerializeField]
     public Image portraitImg;
   //  [SerializeField]
-    public TextMeshProUGUI talkText; //´ëÈ­Ã¢ ÅØ½ºÆ®
+    public TextMeshProUGUI talkText; //ëŒ€í™”ì°½ í…ìŠ¤íŠ¸
   //  [SerializeField]
-    public GameObject talkPanel; //´ëÈ­Ã¢
+    public GameObject talkPanel; //ëŒ€í™”ì°½
     [SerializeField]
-    private float textSpeed; //´ëÈ­±Û ½áÁö´Â ¼Óµµ
+    private float textSpeed; //ëŒ€í™”ê¸€ ì¨ì§€ëŠ” ì†ë„
 
-    private GameObject scanObject; //¾Õ¿¡ÀÖ´Â ¹°Ã¼ ÆÇº°
+    private GameObject scanObject; //ì•ì—ìˆëŠ” ë¬¼ì²´ íŒë³„
     public bool isAction;
-    public int talkIndex; //¸î¹øÂ° ¹®Àå °¡Á®¿ÃÁö °áÁ¤
-    public bool isnowTalking; //¸»ÇÏ°íÀÖ´Âµ¥ ½ºÆäÀÌ½º¹Ù ´­·¯¼­ ´ÙÀ½ ¹®ÀÚ¿­·Î ³Ñ¾î°¡¹ö¸®Áö ¾Ê°Ô
-    
-    public GameObject MeueSet; //¸Ş´ºÃ¢
-    public GameObject player; //ÇÃ·¹ÀÌ¾î
+    public int talkIndex; //ëª‡ë²ˆì§¸ ë¬¸ì¥ ê°€ì ¸ì˜¬ì§€ ê²°ì •
+    public bool isnowTalking; //ë§í•˜ê³ ìˆëŠ”ë° ìŠ¤í˜ì´ìŠ¤ë°” ëˆŒëŸ¬ì„œ ë‹¤ìŒ ë¬¸ìì—´ë¡œ ë„˜ì–´ê°€ë²„ë¦¬ì§€ ì•Šê²Œ
+   
+    public GameObject player; //í”Œë ˆì´ì–´
+
+    public string sceneName; //ì”¬ ì´ë¦„
+    public string mapName; //ë§µ ì´ë¦„
+
+    public string curCharacterName; //í˜„ì¬ ìºë¦­í„° ì´ë¦„
+    public int curLv; //í˜„ì¬ ë ˆë²¨
+    public int curHp; //í˜„ì¬ ì²´ë ¥
+    public float playTime = 0;
+
 
     private void Start()
     {
         Debug.Log(QuestManager.Instance.CheckQuest());
         talkText.text = string.Empty;
 
-        //°ÔÀÓ ½ÃÀÛÇÒ¶§ ·ÎµùÇÑ °ÍÀ» ºÒ·¯¿È ¿©±â ¼öÁ¤ ÇÊ¿äÇÒµí ·Îµù¹öÆ°À» ½ÃÀÛÈ­¸é¿¡ ¸¸µé°Å¸é ¼öÁ¤ÇÊ¿ä
-        GameLoad();
+        //ê²Œì„ ì‹œì‘í• ë•Œ ë¡œë”©í•œ ê²ƒì„ ë¶ˆëŸ¬ì˜´ ì—¬ê¸° ìˆ˜ì • í•„ìš”í• ë“¯ ë¡œë”©ë²„íŠ¼ì„ ì‹œì‘í™”ë©´ì— ë§Œë“¤ê±°ë©´ ìˆ˜ì •í•„ìš”
+        //GameLoad();
     }
 
     public override void Awake()
     {
+
         base.Awake();
     }
     void Update()
     {
-        //ESCÅ°¸¦ ´­·¶À» ¶§ ¸Ş´ºÃ¢ÀÌ ³ª¿Àµµ·Ï ÇÔ
+
+        //ESCí‚¤ë¥¼ ëˆŒë €ì„ ë•Œ ë©”ë‰´ì°½ì´ ë‚˜ì˜¤ë„ë¡ í•¨
         if (Input.GetButtonDown("Cancel"))
         {
-            if (MeueSet.activeSelf) //¸¸¾à ¸Ş´º°¡ Ä¿Á®ÀÖÀ» °æ¿ì¿¡
-            {
-                MeueSet.SetActive(false); //²¨Áø´Ù.
-                Time.timeScale = 1f; //°ÔÀÓ ¼Óµµ¸¦ 1¹è¼ÓÀ¸·Î ÀüÈ¯ÇÑ´Ù.
-            }
-            else //¾Æ´Ï¶ó¸é
-                MeueSet.SetActive(true); //MeueSet È°¼ºÈ­
-            //°ÔÀÓ ¼Óµµ¸¦ 0¹è¼ÓÀ¸·Î ÀüÈ¯ÇÑ´Ù.
+            UIManager.Instance.SetUIOn(UIManager.Instance.menuSet);
+            //ê²Œì„ ì†ë„ë¥¼ 0ë°°ì†ìœ¼ë¡œ ì „í™˜í•œë‹¤.
             Time.timeScale = 0f;
 
         }
-           
-        
+
     }
+
+
 
     public void Action(GameObject scanObj)
     {
-        Debug.Log("Action ¸»°É±â");
-        scanObject = scanObj; //³Ñ°Ü¹ŞÀº ½ºÄµµÈ ¿ÀºêÁ§Æ®ÀÇ
-        ObjData objData = scanObject.GetComponent<ObjData>(); //Á¤º¸¸¦ °¡Á®¿Í¼­
-        Talk(objData.id, objData.isNpc); //TalkÇÔ¼ö È£ÃâÇÏ°í
+        Debug.Log("Action ë§ê±¸ê¸°");
+        scanObject = scanObj; //ë„˜ê²¨ë°›ì€ ìŠ¤ìº”ëœ ì˜¤ë¸Œì íŠ¸ì˜
+        ObjData objData = scanObject.GetComponent<ObjData>(); //ì •ë³´ë¥¼ ê°€ì ¸ì™€ì„œ
+        Talk(objData.id, objData.isNpc); //Talkí•¨ìˆ˜ í˜¸ì¶œí•˜ê³ 
        
-        talkPanel.SetActive(isAction); //panel È°¼ºÈ­/ºñÈ°¼ºÈ­
+        talkPanel.SetActive(isAction); //panel í™œì„±í™”/ë¹„í™œì„±í™”
 
     }
 
     void Talk(int id, bool isNpc)
     {
         int questTalkIndex = QuestManager.Instance.GetQuestTalkIndex(id);
-        string talkData = TalkManager.Instance.GetTalk(id+ questTalkIndex, talkIndex); //ÇØ´çÇÏ´Â ´ëÈ­³»¿ë °¡Á®¿Í¼­ 
+        string talkData = TalkManager.Instance.GetTalk(id+ questTalkIndex, talkIndex); //í•´ë‹¹í•˜ëŠ” ëŒ€í™”ë‚´ìš© ê°€ì ¸ì™€ì„œ 
 
-        if (talkData == null) //´ëÈ­³¡³ª¸é
+        if (talkData == null) //ëŒ€í™”ëë‚˜ë©´
         {
-            isAction = false; //Ã¢¾ø¾Ö°í
-            talkIndex = 0; //ÀÎµ¦½ºÃÊ±âÈ­ÇÑ ´ÙÀ½
-            Debug.Log(QuestManager.Instance.CheckQuest(id)); //´ëÈ­°¡ ³¡³ª¸é Äù½ºÆ®ÀÇ ´ÙÀ½ ´ëÈ­·Î
-            return; //ÇÔ¼ö Á¾·á
+            isAction = false; //ì°½ì—†ì• ê³ 
+            talkIndex = 0; //ì¸ë±ìŠ¤ì´ˆê¸°í™”í•œ ë‹¤ìŒ
+            Debug.Log(QuestManager.Instance.CheckQuest(id)); //ëŒ€í™”ê°€ ëë‚˜ë©´ í€˜ìŠ¤íŠ¸ì˜ ë‹¤ìŒ ëŒ€í™”ë¡œ
+            return; //í•¨ìˆ˜ ì¢…ë£Œ
         }
         if (isNpc)
         {
-            talkText.text = string.Empty; //ÅØ½ºÆ® ºñ¿ì°í
+            talkText.text = string.Empty; //í…ìŠ¤íŠ¸ ë¹„ìš°ê³ 
 
             string realTalkData = talkData.Split(':')[0];
-            StartCoroutine(TypeLine(realTalkData)); //´ëÈ­Ã¢ÀÔ·Â ÄÚ·çÆ¾ ½ÇÇà
+            StartCoroutine(TypeLine(realTalkData)); //ëŒ€í™”ì°½ì…ë ¥ ì½”ë£¨í‹´ ì‹¤í–‰
 
             portraitImg.color = new Color(1, 1, 1, 1);
             portraitImg.sprite = TalkManager.Instance.GetPortrait(id, int.Parse(talkData.Split(':')[1]));
@@ -101,10 +106,10 @@ public class GameManager : Singleton<GameManager>
         }
 
         isAction = true;
-        talkIndex++; //´ÙÀ½ ¹®ÀåÀ¸·Î
+        talkIndex++; //ë‹¤ìŒ ë¬¸ì¥ìœ¼ë¡œ
     }
 
-    IEnumerator TypeLine(string talking) //ÇÑ±ÛÀÚ¾¿ ½áÁö´Â È¿°ú
+    IEnumerator TypeLine(string talking) //í•œê¸€ìì”© ì¨ì§€ëŠ” íš¨ê³¼
     {
         foreach (char c in talking.ToCharArray())
         {
@@ -115,45 +120,12 @@ public class GameManager : Singleton<GameManager>
         isnowTalking = false;
     }
 
-    //°ÔÀÓÁ¾·á ÇÔ¼ö
+    //ê²Œì„ì¢…ë£Œ í•¨ìˆ˜
     public void GameExit()
     {
         Application.Quit();
     }
 
-    //°ÔÀÓ ÀúÀå ÇÔ¼ö
-    public void GameSave()
-    {
-        //PlayerPrefs : °£´ÜÇÑ µ¥ÀÌÅÍ ÀúÀå±â´ÉÀ» Áö¿øÇÏ´Â Å¬·¡½º
-        PlayerPrefs.SetFloat("PlayerX", player.transform.position.x);
-        PlayerPrefs.SetFloat("PlayerY", player.transform.position.y);
-        PlayerPrefs.SetFloat("QuestId", QuestManager.Instance.questId);
-        PlayerPrefs.SetFloat("QuestActionIndex", QuestManager.Instance.questActionIndex);
-        PlayerPrefs.Save(); //·¹Áö½ºÆ®¸®¿¡ À§¿¡ÀÖ´Â ÇÃ·¹ÀÌ¾î À§Ä¡, Äù½ºÆ®¸¦ ÀúÀåÇØÁØ´Ù.
 
-        MeueSet.SetActive(false); //¼¼ÀÌºê°¡ µÇ¾úÀ¸¹Ç·Î ¸Ş´ºÃ¢ ²¨Áü
-    }
-
-    //°ÔÀÓ ºÒ·¯¿À±â ÇÔ¼ö
-    public void GameLoad()
-    {
-        //ÃÖÃÊ °ÔÀÓ ½ÇÇàÇßÀ» ¶© µ¥ÀÌÅÍ°¡ ¾øÀ¸¹Ç·Î ¿¹¿ÜÃ³¸® ·ÎÁ÷ ÀÛ¼º 
-        if (!PlayerPrefs.HasKey("PlayerX"))
-            return; //·Îµå¸¦ ÇÏÁö ¸»¶ó´Â °Í
-
-        //°ÔÀÓµ¥ÀÌÅÍ ÀúÀåÇÑ °ÍÀ» ºÒ·¯¿È
-        float x = PlayerPrefs.GetFloat("PlayerX");
-        float y = PlayerPrefs.GetFloat("PlayerY");
-        int questId = PlayerPrefs.GetInt("QuestId");
-        int questActionIndex = PlayerPrefs.GetInt("QuestActionIndex");
-
-        //ºÒ·¯¿Â µ¥ÀÌÅÍ¸¦ °ÔÀÓ ¿ÀºêÁ§Æ®¿¡ Àû¿ë
-        player.transform.position = new Vector3(x, y, 0);
-        QuestManager.Instance.questId = questId;
-        QuestManager.Instance.questActionIndex = questActionIndex;
-
-        //ÀÌ¿Ü¿¡µµ Äù½ºÆ®¿¡ °ü·ÃµÈ ¿ÀºêÁ§Æ® ÀúÀåÀÌ¶óµç°¡
-        //ÀÎº¥Åä¸® ÀúÀåÀÌ ÇÊ¿ä ÀÌ¿¡ ´ëÇÑ ÀÚ·á Ã£¾Æº¸°ÚÀ½
-    }
-
+    //ê¸°ì¡´ì— ìˆë˜ ì„¸ì´ë¸Œ, ë¡œë“œ ê¸°ëŠ¥ì„ ì„¸ì´ë¸Œë§¤ë‹ˆì €ì— ì˜®ê²¼ìŒ!
 }

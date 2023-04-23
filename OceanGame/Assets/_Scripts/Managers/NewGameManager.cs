@@ -49,16 +49,22 @@ public class NewGameManager : Singleton<NewGameManager>
                 MeueSet.SetActive(false); //꺼진다.
                 Time.timeScale = 1f; //게임 속도를 1배속으로 전환한다.
             }
-            else //아니라면
+            else
+            {
+                //아니라면
                 MeueSet.SetActive(true); //MeueSet 활성화
-            //게임 속도를 0배속으로 전환한다.
-            Time.timeScale = 0f;
+                                         //게임 속도를 0배속으로 전환한다.
+                Time.timeScale = 0f;
+            }
 
         }
 
-
+        UpdatePlayTime();
     }
-
+    void UpdatePlayTime()
+    {
+        GameManager.Instance.playTime += Time.deltaTime;
+    }
     public void Action(GameObject scanObj)
     {
         scanObject = scanObj; //넘겨받은 스캔된 오브젝트의
