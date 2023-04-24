@@ -39,8 +39,8 @@ public class PlayerController : Singleton<PlayerController>
     // Update is called once per frame
     void Update()
     {
-        movement.x = NewGameManager.Instance.isAction ? 0 :Input.GetAxisRaw("Horizontal");
-        movement.y = NewGameManager.Instance.isAction ? 0 : Input.GetAxisRaw("Vertical");
+        movement.x = GameManager.Instance.isAction ? 0 :Input.GetAxisRaw("Horizontal");
+        movement.y = GameManager.Instance.isAction ? 0 : Input.GetAxisRaw("Vertical");
 
         //Move Value
         h = Input.GetAxisRaw("Horizontal");
@@ -116,8 +116,7 @@ public class PlayerController : Singleton<PlayerController>
 
         if (Input.GetButtonDown("Jump") && scanObj != null&&!GameManager.Instance.isnowTalking) //스페이스바 눌러서 대화 넘기기
         {
-            NewGameManager.Instance.Action(scanObj);
-            //GameManager.Instance.Action(scanObj);
+            GameManager.Instance.Action(scanObj);
         }
 
     }

@@ -6,16 +6,16 @@ using TMPro;
 
 public class GameManager : Singleton<GameManager>
 {
-    //public TalkManager talkManager;
-   // public QuestManager questManager;
-   // [SerializeField]
     public Image portraitImg;
-  //  [SerializeField]
     public TextMeshProUGUI talkText; //대화창 텍스트
-  //  [SerializeField]
+
     public GameObject talkPanel; //대화창
     [SerializeField]
     private float textSpeed; //대화글 써지는 속도
+    [SerializeField] float fadeSpeed;
+    int contextCount = 0; //대사 카운트
+    Dialogue dialogues;
+
 
     private GameObject scanObject; //앞에있는 물체 판별
     public bool isAction;
@@ -72,53 +72,58 @@ public class GameManager : Singleton<GameManager>
 
     public void Action(GameObject scanObj)
     {
-        Debug.Log("Action 말걸기");
         scanObject = scanObj; //넘겨받은 스캔된 오브젝트의
+        if (scanObj.CompareTag("Gate"))
+        {
+            scanObj.GetComponent<NewSceneTransition>().SceneTransition();
+            return;
+        }
         ObjData objData = scanObject.GetComponent<ObjData>(); //정보를 가져와서
-        Talk(objData.id, objData.isNpc); //Talk함수 호출하고
-       
+        int questTalkIndex = QuestManager.Instance.GetQuestTalkIndex(objData.id);
+        Dialogue dialoguess = DatabaseManager.Instance.GetDialogue(objData.id + questTalkIndex);
+        Talk(dialoguess, objData.id);
+
+
         talkPanel.SetActive(isAction); //panel 활성화/비활성화
 
     }
-
-    void Talk(int id, bool isNpc)
+    void Talk(Dialogue p_dialogue, int _id)
     {
-        int questTalkIndex = QuestManager.Instance.GetQuestTalkIndex(id);
-        string talkData = TalkManager.Instance.GetTalk(id+ questTalkIndex, talkIndex); //해당하는 대화내용 가져와서 
+        dialogues = p_dialogue;
+        string talkData = string.Empty;
 
-        if (talkData == null) //대화끝나면
+        if (contextCount < p_dialogue.contexts.Length)
         {
-            isAction = false; //창없애고
-            talkIndex = 0; //인덱스초기화한 다음
-            Debug.Log(QuestManager.Instance.CheckQuest(id)); //대화가 끝나면 퀘스트의 다음 대화로
-            return; //함수 종료
-        }
-        if (isNpc)
-        {
-            talkText.text = string.Empty; //텍스트 비우고
-
-            string realTalkData = talkData.Split(':')[0];
-            StartCoroutine(TypeLine(realTalkData)); //대화창입력 코루틴 실행
-
-            portraitImg.color = new Color(1, 1, 1, 1);
-            portraitImg.sprite = TalkManager.Instance.GetPortrait(id, int.Parse(talkData.Split(':')[1]));
+            talkText.text = string.Empty;
+            talkData = p_dialogue.contexts[contextCount];
+            StartCoroutine(TypeLine(talkData)); //대화창입력 코루틴 실행
+            contextCount++;
         }
         else
         {
-            talkText.text = string.Empty;
-            StartCoroutine(TypeLine(talkData));
-
-            portraitImg.color = new Color(1, 1, 1, 0);
+            isAction = false;
+            contextCount = 0;
+            QuestManager.Instance.CheckQuest(_id);
+            return;
 
         }
-
         isAction = true;
-        talkIndex++; //다음 문장으로
+    }
+
+    void ChangeSprite()
+    {
+        if (dialogues.spriteName[contextCount] != "")
+        {
+            Debug.Log(dialogues.spriteName[contextCount]);
+            StartCoroutine(SpriteChangeCoroutine(dialogues.spriteName[contextCount]));
+        }
     }
 
     IEnumerator TypeLine(string talking) //한글자씩 써지는 효과
     {
-        foreach (char c in talking.ToCharArray())
+        ChangeSprite();
+        string t_replace = talking.Replace("'", ",");
+        foreach (char c in t_replace.ToCharArray())
         {
             isnowTalking = true;
             talkText.text += c;
@@ -126,6 +131,39 @@ public class GameManager : Singleton<GameManager>
         }
         isnowTalking = false;
     }
+    public IEnumerator SpriteChangeCoroutine(string p_SpriteName)
+    {
+        Image thisImage = portraitImg.GetComponent<Image>();
+        Sprite t_sprite = Resources.Load("Characters/" + p_SpriteName, typeof(Sprite)) as Sprite;
+
+        if (!CheckSameSprite(thisImage.sprite, t_sprite))
+        {
+            Color t_color = thisImage.color;
+            t_color.a = 0;
+            thisImage.color = t_color;
+
+            thisImage.sprite = t_sprite;
+
+            while (t_color.a < 1)
+            {
+                t_color.a += fadeSpeed;
+                thisImage.color = t_color;
+                yield return null;
+            }
+        }
+    }
+    bool CheckSameSprite(Sprite p_targetSprite, Sprite p_Sprite)
+    {
+        if (p_targetSprite == p_Sprite)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
 
     //게임종료 함수
     public void GameExit()
