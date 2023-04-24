@@ -11,7 +11,7 @@ public class FollowPlayer : MonoBehaviour
     void Start()
     {
         vcam = GetComponent<CinemachineVirtualCamera>();
-        vcam.Follow = NewGameManager.Instance.player.transform;
+        vcam.Follow = GameManager.Instance.player.transform;
     }
 
     // Update is called once per frame
