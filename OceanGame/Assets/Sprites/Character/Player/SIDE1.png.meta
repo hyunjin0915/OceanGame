@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ff35f5172aa637d4f908d1bc8624d622
+guid: 2b207a7a65d97b44397e3de574a9f160
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -101,11 +101,35 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SIDE2_0
+      name: SIDE1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -119,14 +143,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac52f213b0a25b744959d1e0b1e8fe7c
-      internalID: 2109789110
+      spriteID: 332dd9d1963aa6742ad04a047e8bbfa3
+      internalID: -1827266797
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SIDE2_1
+      name: SIDE1_1
       rect:
         serializedVersion: 2
         x: 32
@@ -140,14 +164,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3eff06d3deec564428defe7eb5261a8b
-      internalID: 932817083
+      spriteID: bd666aa020042d6458788e8d4504c24d
+      internalID: -187866728
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SIDE2_2
+      name: SIDE1_2
       rect:
         serializedVersion: 2
         x: 64
@@ -161,14 +185,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e81246d4e400b074393193d59c5f336f
-      internalID: 1119065670
+      spriteID: 0b22786c3e7af42449da5027d9c1eef8
+      internalID: -426511462
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SIDE2_3
+      name: SIDE1_3
       rect:
         serializedVersion: 2
         x: 96
@@ -182,8 +206,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 59a950dd19c1d7a4b93d0de1ac72545f
-      internalID: 1700538901
+      spriteID: 50f6feb6cb7e4f54a9c540fafb48680f
+      internalID: -1503370920
       vertices: []
       indices: 
       edges: []
@@ -199,10 +223,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      SIDE2_3: 1700538901
-      SIDE2_0: 2109789110
-      SIDE2_2: 1119065670
-      SIDE2_1: 932817083
+      SIDE1_2: -426511462
+      SIDE1_0: -1827266797
+      SIDE1_1: -187866728
+      SIDE1_3: -1503370920
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

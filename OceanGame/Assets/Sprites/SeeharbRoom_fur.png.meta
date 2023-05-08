@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 123a8416f45b9984cb9d9dafe68456c5
+guid: 3b6cf311e52e65047b54f3f74fd5facb
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -101,278 +101,218 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: library_inside1_fur_0
+      name: SeeharbRoom_fur_0
       rect:
         serializedVersion: 2
-        x: 216
-        y: 112
-        width: 252
-        height: 865
+        x: 311
+        y: 350
+        width: 66
+        height: 79
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fbcad9ce87d6f3d4e981dcfa7d9960c7
-      internalID: -805594934
+      spriteID: 5dd9f1c844baa56428618abb118afcc3
+      internalID: -1186845850
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: library_inside1_fur_1
+      name: SeeharbRoom_fur_1
       rect:
         serializedVersion: 2
-        x: 476
-        y: 726
-        width: 185
-        height: 299
+        x: 397
+        y: 364
+        width: 29
+        height: 41
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c1a14c0efbc4d8e458cac0502ac5eccd
-      internalID: 714637480
+      spriteID: 8f8d2ab7489009b43aac45039dcded52
+      internalID: 2081662938
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: library_inside1_fur_2
+      name: SeeharbRoom_fur_2
       rect:
         serializedVersion: 2
-        x: 720
-        y: 681
-        width: 411
-        height: 225
+        x: 531
+        y: 290
+        width: 79
+        height: 112
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ca7a38d5cbbe44643bdcd1fbf0806ade
-      internalID: 1768930456
+      spriteID: d2bddad275938c14fb244697362225bc
+      internalID: 1018181766
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: library_inside1_fur_3
+      name: SeeharbRoom_fur_3
       rect:
         serializedVersion: 2
-        x: 1161
-        y: 474
-        width: 673
-        height: 336
+        x: 611
+        y: 290
+        width: 79
+        height: 112
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 109c13ddd760ca9499ae783ac015c24f
-      internalID: 543845657
+      spriteID: a6481fe572b0fa348a3ac5878e722f5b
+      internalID: -560122627
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: library_inside1_fur_4
+      name: SeeharbRoom_fur_4
       rect:
         serializedVersion: 2
-        x: 1855
-        y: 693
-        width: 65
-        height: 213
+        x: 691
+        y: 290
+        width: 79
+        height: 112
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8447625e1e2bf184e861f281d5fac790
-      internalID: 487155362
+      spriteID: d31b158bd5d1a8e4f82bd3e3194f7bb1
+      internalID: 2060547374
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: library_inside1_fur_5
+      name: SeeharbRoom_fur_5
       rect:
         serializedVersion: 2
-        x: 302
-        y: 334
-        width: 207
-        height: 333
+        x: 386
+        y: 156
+        width: 97
+        height: 87
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 172, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 53080da106fb82b4da2bf9fa992bef34
-      internalID: -2090967831
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: library_inside1_fur_6
-      rect:
-        serializedVersion: 2
-        x: 519
-        y: 334
-        width: 207
-        height: 333
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 173, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: de141a892273b9841ae44b973ddb376f
-      internalID: 604997605
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: library_inside1_fur_7
-      rect:
-        serializedVersion: 2
-        x: 737
-        y: 335
-        width: 207
-        height: 333
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 174, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 425c071f5ba077048bbf40b17d8e751d
-      internalID: -1868856954
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: library_inside1_fur_8
-      rect:
-        serializedVersion: 2
-        x: 1242
-        y: 216
-        width: 511
-        height: 337
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2358ce0bb3c6b48439da1d5181b5c124
-      internalID: 760333582
+      spriteID: 6822fa0fbe8e98c4da2c4764227ab98a
+      internalID: -1267927170
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: library_inside1_fur_9
+      name: SeeharbRoom_fur_6
       rect:
         serializedVersion: 2
-        x: 302
-        y: 110
-        width: 207
-        height: 214
+        x: 489
+        y: 183
+        width: 27
+        height: 33
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 90e92bc52c4a367439a5c9896fac519c
-      internalID: 223824398
+      spriteID: a335c87d2dbdb0b49abfe737f7ed8396
+      internalID: 1052283530
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: library_inside1_fur_10
+      name: SeeharbRoom_fur_7
       rect:
         serializedVersion: 2
-        x: 518
-        y: 110
-        width: 207
-        height: 214
+        x: 689
+        y: 99
+        width: 79
+        height: 138
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6262b3c8a57c6d74883e3b0baf306b8e
-      internalID: -8319930
+      spriteID: e1a8445c2bd39cc4596336a9c597cd77
+      internalID: 1127135137
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: library_inside1_fur_11
+      name: SeeharbRoom_fur_8
       rect:
         serializedVersion: 2
-        x: 737
-        y: 110
-        width: 207
-        height: 214
+        x: 422
+        y: 126
+        width: 28
+        height: 33
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 20c277c11b0f01746bfee1066e876746
-      internalID: -937849693
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: library_inside1_fur_12
-      rect:
-        serializedVersion: 2
-        x: 1382
-        y: 57
-        width: 238
-        height: 148
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e2584afbd7c06bb488911ed173164948
-      internalID: 897302092
+      spriteID: 326795401b7a7cd4f97328d67c283ce0
+      internalID: 1955905834
       vertices: []
       indices: 
       edges: []
@@ -388,19 +328,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      library_inside1_fur_10: -8319930
-      library_inside1_fur_1: 714637480
-      library_inside1_fur_2: 1768930456
-      library_inside1_fur_7: -1868856954
-      library_inside1_fur_12: 897302092
-      library_inside1_fur_5: -2090967831
-      library_inside1_fur_11: -937849693
-      library_inside1_fur_3: 543845657
-      library_inside1_fur_6: 604997605
-      library_inside1_fur_0: -805594934
-      library_inside1_fur_8: 760333582
-      library_inside1_fur_4: 487155362
-      library_inside1_fur_9: 223824398
+      SeeharbRoom_fur_7: 1127135137
+      SeeharbRoom_fur_1: 2081662938
+      SeeharbRoom_fur_6: 1052283530
+      SeeharbRoom_fur_3: -560122627
+      SeeharbRoom_fur_4: 2060547374
+      SeeharbRoom_fur_2: 1018181766
+      SeeharbRoom_fur_5: -1267927170
+      SeeharbRoom_fur_0: -1186845850
+      SeeharbRoom_fur_8: 1955905834
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
