@@ -22754,13 +22754,13 @@ MonoBehaviour:
   - {fileID: 441993818}
   menuSet: {fileID: 791006580}
   saveButton:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1884320247}
+  - {fileID: 311392276}
+  - {fileID: 1913579861}
   loadButton:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1982787591}
+  - {fileID: 668751107}
+  - {fileID: 1487339939}
   saveUIDatas:
   - emptyText: {fileID: 1572456095}
     curCharacterName: {fileID: 1136674524}
