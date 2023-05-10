@@ -5,18 +5,21 @@ using UnityEngine;
 public class PlayerTest : Player
 {
     public PlayerKind playerKind;
-    // Start is called before the first frame update
+
+    new
+        // Start is called before the first frame update
     void Start()
     {
         base.Start();
         playerKind = PlayerKind.PlayerTest;
     }
-
+    new
     // Update is called once per frame
     void Update()
     {
         base.Update();
     }
+    new
     private void FixedUpdate()
     {
         base.FixedUpdate();
