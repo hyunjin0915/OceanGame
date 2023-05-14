@@ -722,6 +722,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnterTwonGate
       objectReference: {fileID: 0}
+    - target: {fileID: 1700335966071240649, guid: 27b39166c274ca14b92acc2d4564f7eb, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1700335966071240649, guid: 27b39166c274ca14b92acc2d4564f7eb, type: 3}
+      propertyPath: m_TagString
+      value: Gate
+      objectReference: {fileID: 0}
+    - target: {fileID: 3738804793795305452, guid: 27b39166c274ca14b92acc2d4564f7eb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4018980009243812166, guid: 27b39166c274ca14b92acc2d4564f7eb, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1066,7 +1078,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
