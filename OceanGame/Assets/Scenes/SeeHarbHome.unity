@@ -780,7 +780,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5708385926568780643, guid: 27b39166c274ca14b92acc2d4564f7eb, type: 3}
       propertyPath: sceneToLoad
-      value: HyunJin
+      value: EnterTown
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27b39166c274ca14b92acc2d4564f7eb, type: 3}
@@ -802,7 +802,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPos: {fileID: 0}
-  startPoint: HyunJin
+  startPoint: EnterTown
 --- !u!1 &654525044
 GameObject:
   m_ObjectHideFlags: 0
