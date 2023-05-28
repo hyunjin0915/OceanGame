@@ -24,6 +24,7 @@ public class GameManager : Singleton<GameManager>
 
    
     public GameObject player; //플레이어
+    public Player playerLogic; //플레이어 로직
 
     public string sceneName; //씬 이름
     public string mapName; //맵 이름

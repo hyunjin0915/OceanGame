@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16781b120ac9e9e43b92a414aa1283cb, type: 3}
+  m_Name: Monster Data
+  m_EditorClassIdentifier: 
+  checkPlayerInsideDistance: 6
+  isChaseTime: 0
+  maxNormalMoveDelay: 2
+  curNormalMoveDelay: 1.2199994
+  stopNormalMoveDelay: 0.2138195
+  grade: 0
+  hpBarPrefab: {fileID: 4131279712940724295, guid: 2c2068538c7365e4abd4655d591326b0, type: 3}
+  hpBar: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+  rigidbody2D: {fileID: 0}

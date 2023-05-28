@@ -10,7 +10,7 @@ public class PlayerTest : Player
         // Start is called before the first frame update
     void Start()
     {
-        base.Start();
+        //base.Start();
         playerKind = PlayerKind.PlayerTest;
     }
     new
