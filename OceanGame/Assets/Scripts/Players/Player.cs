@@ -28,14 +28,26 @@ public abstract class Player : MonoBehaviour
     float h;
     float v; //애니메이터용 변수
     bool isHorizonMove;
-    // Start is called before the first frame update
-    protected void Start()
+
+    //플레이어 체력
+    [field: SerializeField]
+    public float HP { get; private set; } = 3.0f;
+
+    protected void Awake()
     {
         anim = GetComponent<Animator>(); //anim 변수선언
         myRigid = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Monster")
+        {
+            float monsterDmg = collision.gameObject.GetComponent<Monster>().monsterData.Power;
+            OnHit(monsterDmg);
+        }
+    }
     protected void Update()
     {
         movement.x = GameManager.Instance.isAction ? 0 : Input.GetAxisRaw("Horizontal");
@@ -135,6 +147,19 @@ public abstract class Player : MonoBehaviour
             applyRunSpeed = runSpeed;
         else
             applyRunSpeed = 0;
+    }
+
+    //플레이어가 맞았을 때 실행되는 함수
+    void OnHit(float dmg)
+    {
+        HP -= dmg;
+        if (HP <= 0.0f) Die();
+    }
+
+    //플레이어가 죽었을 때 실행되는 함수
+    void Die()
+    {
+        
     }
 
     void DrawRay()
