@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class QuestManager : Singleton<QuestManager>
 {
@@ -8,6 +9,9 @@ public class QuestManager : Singleton<QuestManager>
     public int questActionIndex=0; //퀘스트 대화순서 인덱스
     public GameObject[] questObject; //퀘스트용 오브젝트 저장
     public Dictionary<int, QuestData> questList;
+
+    public GameObject questWindow; //퀘스트 UI창
+    public Text questTitleText; //UI창에 퀘스트 정보 글씨
 
     public override void Awake()
     {
@@ -26,6 +30,8 @@ public class QuestManager : Singleton<QuestManager>
     public int GetQuestTalkIndex(int id)
     {
         //return questId ;
+        if (questActionIndex == 0)
+            OpenQuestWindow();
         return questId + questActionIndex;
         //퀘스트 id + 퀘스트 대화 순서 = 퀘스트 대화id
     }
@@ -36,10 +42,10 @@ public class QuestManager : Singleton<QuestManager>
             questActionIndex++; //대화 진행을 위해 퀘스트 대화순서 올리는 함수
 
         ControlObject(); //퀘스트 오브젝트 관리용 함수
+        //케이스 맞는 퀘스트 실제진행 함수 실행
 
         if (questActionIndex == questList[questId].npcId.Length) //퀘스트 대화순서가 끝에 도달했을 때 다음 퀘스트로
             NextQuest();
-        
 
         return questList[questId].questName;
     }
@@ -74,5 +80,18 @@ public class QuestManager : Singleton<QuestManager>
                 //    questObject[0].SetActive(false);
                 break;
         }
+    }
+
+    public void OpenQuestWindow()
+    {
+        questWindow.SetActive(true);
+        questTitleText.text = questList[questId].questName;
+        StartCoroutine(WaitForTenSec());
+        questWindow.SetActive(false);
+    }
+
+    IEnumerator WaitForTenSec()
+    {
+        yield return new WaitForSeconds(10.0f);
     }
 }

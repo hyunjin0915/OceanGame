@@ -15668,6 +15668,8 @@ MonoBehaviour:
   questId: 10
   questActionIndex: 0
   questObject: []
+  questWindow: {fileID: 0}
+  questTitleText: {fileID: 0}
 --- !u!4 &974148801
 Transform:
   m_ObjectHideFlags: 0

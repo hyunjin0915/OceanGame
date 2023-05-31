@@ -4,9 +4,10 @@ using System.Collections.Generic;
 public class QuestData 
 {
     public string questName;
-    public int[] npcId; //Äù½ºÆ®¿Í °ü·ÃµÈ npc
+    public int[] npcId; //í€˜ìŠ¤íŠ¸ì™€ ê´€ë ¨ëœ npc
+    public QuestGoal Qgoal;
 
-    public QuestData(string name, int[] npc) //±¸Á¶Ã¼ »ı¼ºÀ» À§ÇÑ »ı¼ºÀÚ ÇÊ¿äÇÔ
+    public QuestData(string name, int[] npc) //êµ¬ì¡°ì²´ ìƒì„±ì„ ìœ„í•œ ìƒì„±ì í•„ìš”í•¨
     {
         questName = name;
         npcId = npc;
