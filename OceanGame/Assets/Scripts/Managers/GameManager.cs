@@ -123,7 +123,7 @@ public class GameManager : Singleton<GameManager>
     IEnumerator TypeLine(string talking) //한글자씩 써지는 효과
     {
         ChangeSprite();
-        string t_replace = talking.Replace("'", ",");
+        string t_replace = talking.Replace("'", ","); //csv파일은쉼표구분이라서
         foreach (char c in t_replace.ToCharArray())
         {
             isnowTalking = true;

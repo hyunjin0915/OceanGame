@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 123a8416f45b9984cb9d9dafe68456c5
+guid: a21dc8f7ae93a5b43bff24320c3d98d1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -101,62 +101,17 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Windows Store Apps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: library_inside1_fur_0
+      name: map_village_4 1_0
       rect:
         serializedVersion: 2
-        x: 215
-        y: 110
-        width: 252
-        height: 865
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 611, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fbcad9ce87d6f3d4e981dcfa7d9960c7
-      internalID: -805594934
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: library_inside1_fur_1
-      rect:
-        serializedVersion: 2
-        x: 476
-        y: 726
-        width: 185
-        height: 299
+        x: 133
+        y: 517
+        width: 316
+        height: 309
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -164,20 +119,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c1a14c0efbc4d8e458cac0502ac5eccd
-      internalID: 714637480
+      spriteID: afb9720aab9b17a45bab180afd7dafcb
+      internalID: -1622678426
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: library_inside1_fur_2
+      name: map_village_4 1_1
       rect:
         serializedVersion: 2
-        x: 720
-        y: 681
-        width: 411
-        height: 225
+        x: 707
+        y: 761
+        width: 51
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -185,20 +140,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ca7a38d5cbbe44643bdcd1fbf0806ade
-      internalID: 1768930456
+      spriteID: a6153be34420a394498d26b921b5f69f
+      internalID: -1753695968
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: library_inside1_fur_3
+      name: map_village_4 1_2
       rect:
         serializedVersion: 2
-        x: 1161
-        y: 474
-        width: 673
-        height: 336
+        x: 726
+        y: 784
+        width: 54
+        height: 226
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -206,20 +161,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 109c13ddd760ca9499ae783ac015c24f
-      internalID: 543845657
+      spriteID: f62298a3cbd7f6a42a4d276bad7d61c9
+      internalID: 328208167
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: library_inside1_fur_4
+      name: map_village_4 1_3
       rect:
         serializedVersion: 2
-        x: 1855
-        y: 693
-        width: 65
-        height: 213
+        x: 429
+        y: 596
+        width: 45
+        height: 65
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -227,20 +182,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8447625e1e2bf184e861f281d5fac790
-      internalID: 487155362
+      spriteID: 7c00b6f98507ed149a0c31894760afcc
+      internalID: -416661758
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: library_inside1_fur_5
+      name: map_village_4 1_4
       rect:
         serializedVersion: 2
-        x: 302
-        y: 334
-        width: 207
-        height: 333
+        x: 696
+        y: 460
+        width: 54
+        height: 243
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -248,20 +203,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 53080da106fb82b4da2bf9fa992bef34
-      internalID: -2090967831
+      spriteID: c56340cd26e36d44b935850c40af5dfe
+      internalID: -1376191603
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: library_inside1_fur_6
+      name: map_village_4 1_5
       rect:
         serializedVersion: 2
-        x: 519
-        y: 334
-        width: 207
-        height: 333
+        x: 50
+        y: 477
+        width: 97
+        height: 99
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -269,20 +224,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: de141a892273b9841ae44b973ddb376f
-      internalID: 604997605
+      spriteID: f5164dfd05cc55947b6c8dc253faf4f6
+      internalID: 2121017829
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: library_inside1_fur_7
+      name: map_village_4 1_6
       rect:
         serializedVersion: 2
-        x: 737
-        y: 334
-        width: 207
-        height: 333
+        x: 431
+        y: 552
+        width: 45
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -290,20 +245,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 425c071f5ba077048bbf40b17d8e751d
-      internalID: -1868856954
+      spriteID: 5fcd99f3aa6f0644faf5dd69ad8456c6
+      internalID: 1777584426
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: library_inside1_fur_8
+      name: map_village_4 1_7
       rect:
         serializedVersion: 2
-        x: 1242
-        y: 216
-        width: 511
-        height: 337
+        x: 432
+        y: 507
+        width: 45
+        height: 37
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -311,20 +266,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2358ce0bb3c6b48439da1d5181b5c124
-      internalID: 760333582
+      spriteID: 79c95d425b645cf409fd6263fa26d570
+      internalID: -1232414671
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: library_inside1_fur_9
+      name: map_village_4 1_8
       rect:
         serializedVersion: 2
-        x: 302
-        y: 110
-        width: 207
-        height: 214
+        x: 133
+        y: 462
+        width: 26
+        height: 45
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -332,20 +287,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 90e92bc52c4a367439a5c9896fac519c
-      internalID: 223824398
+      spriteID: ed1a345c808195346b0f3ea764b6eda3
+      internalID: -585819386
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: library_inside1_fur_10
+      name: map_village_4 1_9
       rect:
         serializedVersion: 2
-        x: 518
-        y: 110
-        width: 207
-        height: 214
+        x: 741
+        y: 461
+        width: 15
+        height: 18
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -353,50 +308,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6262b3c8a57c6d74883e3b0baf306b8e
-      internalID: -8319930
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: library_inside1_fur_11
-      rect:
-        serializedVersion: 2
-        x: 737
-        y: 110
-        width: 207
-        height: 214
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 20c277c11b0f01746bfee1066e876746
-      internalID: -937849693
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: library_inside1_fur_12
-      rect:
-        serializedVersion: 2
-        x: 1382
-        y: 57
-        width: 238
-        height: 148
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e2584afbd7c06bb488911ed173164948
-      internalID: 897302092
+      spriteID: 9422c3b6bd714e64eabaee9e7eac0b00
+      internalID: 886649279
       vertices: []
       indices: 
       edges: []
@@ -412,19 +325,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      library_inside1_fur_10: -8319930
-      library_inside1_fur_1: 714637480
-      library_inside1_fur_2: 1768930456
-      library_inside1_fur_7: -1868856954
-      library_inside1_fur_12: 897302092
-      library_inside1_fur_5: -2090967831
-      library_inside1_fur_11: -937849693
-      library_inside1_fur_3: 543845657
-      library_inside1_fur_6: 604997605
-      library_inside1_fur_0: -805594934
-      library_inside1_fur_8: 760333582
-      library_inside1_fur_4: 487155362
-      library_inside1_fur_9: 223824398
+      map_village_4 1_9: 886649279
+      map_village_4 1_2: 328208167
+      map_village_4 1_7: -1232414671
+      map_village_4 1_0: -1622678426
+      map_village_4 1_4: -1376191603
+      map_village_4 1_5: 2121017829
+      map_village_4 1_3: -416661758
+      map_village_4 1_6: 1777584426
+      map_village_4 1_8: -585819386
+      map_village_4 1_1: -1753695968
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
