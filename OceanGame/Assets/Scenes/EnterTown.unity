@@ -2239,6 +2239,7 @@ MonoBehaviour:
   talkIndex: 0
   isnowTalking: 0
   player: {fileID: 473939}
+  playerLogic: {fileID: 856888556}
   sceneName: 
   mapName: 
   curCharacterName: 
@@ -8879,7 +8880,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -32.62889, y: 29.8, z: -10}
+  m_LocalPosition: {x: -32.740005, y: 29.8, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14243,6 +14244,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7455064764221745909, guid: 582ef2ab55fd2f8479fa09010da8a2ef, type: 3}
   m_PrefabInstance: {fileID: 7455064765076143634}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &856888556 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4609706004379086883, guid: 582ef2ab55fd2f8479fa09010da8a2ef, type: 3}
+  m_PrefabInstance: {fileID: 7455064765076143634}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 473939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2b862e368f5ddf45990d401a055c144, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &859351440
 GameObject:
   m_ObjectHideFlags: 0
@@ -15668,6 +15680,8 @@ MonoBehaviour:
   questId: 10
   questActionIndex: 0
   questObject: []
+  questWindow: {fileID: 0}
+  questTitleText: {fileID: 0}
 --- !u!4 &974148801
 Transform:
   m_ObjectHideFlags: 0
