@@ -6,7 +6,7 @@ public class StartPos : MonoBehaviour
 {
     public GameObject playerPos;
     public string startPoint; //플레이어가 시작될 위치
-    private void Start()
+    private void Awake()
     {
         if (startPoint == GameManager.Instance.playerLogic.fromMapName)
         {

@@ -2239,6 +2239,7 @@ MonoBehaviour:
   talkIndex: 0
   isnowTalking: 0
   player: {fileID: 473939}
+  playerLogic: {fileID: 0}
   sceneName: 
   mapName: 
   curCharacterName: 
@@ -15668,6 +15669,8 @@ MonoBehaviour:
   questId: 10
   questActionIndex: 0
   questObject: []
+  questWindow: {fileID: 0}
+  questTitleText: {fileID: 0}
 --- !u!4 &974148801
 Transform:
   m_ObjectHideFlags: 0
@@ -26879,7 +26882,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6670686830617714227, guid: 8968fb9a7e8f7fb4c91c6ad423e2c17a, type: 3}
       propertyPath: startPoint
-      value: Hyunjin
+      value: EnterTown
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8968fb9a7e8f7fb4c91c6ad423e2c17a, type: 3}
