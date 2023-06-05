@@ -32,10 +32,12 @@ public class DialogueParser : MonoBehaviour
 
                 List<string> contextList = new List<string>(); //크기모르니까리스트에저장
                 List<string> spriteList = new List<string>();
+                List<int> talkerIDList = new List<int>();
                 do
                 {
                     contextList.Add(row[4].ToString());
                     spriteList.Add(row[5].ToString());
+                    talkerIDList.Add(int.Parse(row[1].Trim()));
                
                     if (++i < data.Length)
                     {
@@ -47,6 +49,7 @@ public class DialogueParser : MonoBehaviour
 
                 dialogue.contexts = contextList.ToArray();//배열로바꿔서 넣어주고
                 dialogue.spriteName = spriteList.ToArray();
+                dialogue.talkerId = talkerIDList.ToArray();
                 //dialogueList.Add(dialogue);
             }
             DatabaseManager.Instance.QuestDic.Add(dialogue.talkId, dialogue);

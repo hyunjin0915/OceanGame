@@ -13,6 +13,7 @@ public class QuestManager : Singleton<QuestManager>
 
     public GameObject questWindow; //퀘스트 UI창
     public TextMeshProUGUI questTitleText; //UI창에 퀘스트 정보 글씨
+    public float questUITime = 5.0f;
 
     public override void Awake()
     {
@@ -24,8 +25,11 @@ public class QuestManager : Singleton<QuestManager>
     void GenerateData()
     {
         questList.Add(10, new QuestData("마을대화~시하브집대화",new int[] {1000,10000} ));
-        questList.Add(20, new QuestData("타누아대화~레나나소라고동전달",new int[] {3000,2000,4000} ));
-        questList.Add(30, new QuestData("도서관 앞에서 시하브와의 대화",new int[] {1000 } ));
+        questList.Add(20, new QuestData("시하브의 방을 둘러보자",new int[] {3000} ));
+        questList.Add(30, new QuestData("마을을 돌아다니자",new int[] {5000} ));
+        questList.Add(40, new QuestData("낚시대를 찾자",new int[] {100 } ));
+        questList.Add(50, new QuestData("낚시대를 이용하여 분수대에 빠진 열쇠를 꺼내자",new int[] {200} ));
+        questList.Add(60, new QuestData("마을을 돌아다니자",new int[] {1000 } ));
     }
 
     public int GetQuestTalkIndex(int id)
@@ -88,7 +92,7 @@ public class QuestManager : Singleton<QuestManager>
         Debug.Log("퀘스트ui창열기");
         questWindow.SetActive(true);
         questTitleText.text = questList[questId].questName;
-        yield return new WaitForSeconds(10.0f);
+        yield return new WaitForSeconds(questUITime);
         questWindow.SetActive(false);
     }
 }

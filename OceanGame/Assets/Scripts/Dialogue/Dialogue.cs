@@ -14,8 +14,8 @@ public class Dialogue
     public GameObject portraitImg;
     [Tooltip("대화ID")]
     public int talkId;
-   // [Tooltip("npc Id")]
-   // public int NpcId;
+   [Tooltip("talker Id")]
+    public int[] talkerId;
     //public int questId;
 
     [HideInInspector]

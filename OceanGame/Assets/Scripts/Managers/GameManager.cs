@@ -6,7 +6,9 @@ using TMPro;
 
 public class GameManager : Singleton<GameManager>
 {
-    public Image portraitImg;
+    public Image PlayerportraitImg;
+    public Image NPCportraitImg;
+
     public TextMeshProUGUI talkText; //대화창 텍스트
 
     public GameObject talkPanel; //대화창
@@ -134,7 +136,13 @@ public class GameManager : Singleton<GameManager>
     }
     public IEnumerator SpriteChangeCoroutine(string p_SpriteName)
     {
-        Image thisImage = portraitImg.GetComponent<Image>();
+        Image thisImage = NPCportraitImg.GetComponent<Image>();
+
+        if (dialogues.talkerId[contextCount]==10) //플레이어가 말하는 경우
+        {
+           thisImage = PlayerportraitImg.GetComponent<Image>();
+        }
+        
         Sprite t_sprite = Resources.Load("Characters/" + p_SpriteName, typeof(Sprite)) as Sprite;
 
         if (!CheckSameSprite(thisImage.sprite, t_sprite))
@@ -152,6 +160,7 @@ public class GameManager : Singleton<GameManager>
                 yield return null;
             }
         }
+        
     }
     bool CheckSameSprite(Sprite p_targetSprite, Sprite p_Sprite)
     {
