@@ -8,6 +8,7 @@ public class GameManager : Singleton<GameManager>
 {
     public Image PlayerportraitImg;
     public Image NPCportraitImg;
+    
 
     public TextMeshProUGUI talkText; //대화창 텍스트
 
@@ -20,7 +21,7 @@ public class GameManager : Singleton<GameManager>
 
 
     private GameObject scanObject; //앞에있는 물체 판별
-    public bool isAction;
+    public bool isAction; //talkPanel 컨드롤 및 말할 때못움직이게
     public int talkIndex; //몇번째 문장 가져올지 결정
     public bool isnowTalking; //말하고있는데 스페이스바 눌러서 다음 문자열로 넘어가버리지 않게
 
@@ -42,7 +43,7 @@ public class GameManager : Singleton<GameManager>
     {
         Debug.Log(QuestManager.Instance.CheckQuest());
         talkText.text = string.Empty;
-
+        
         //게임 시작할때 로딩한 것을 불러옴 여기 수정 필요할듯 로딩버튼을 시작화면에 만들거면 수정필요
 
         //GameLoad();
@@ -82,13 +83,37 @@ public class GameManager : Singleton<GameManager>
             return;
         }
         ObjData objData = scanObject.GetComponent<ObjData>(); //정보를 가져와서
-        int questTalkIndex = QuestManager.Instance.GetQuestTalkIndex(objData.id);
-        Dialogue dialoguess = DatabaseManager.Instance.GetDialogue(objData.id + questTalkIndex);
-        Talk(dialoguess, objData.id);
+
+        if(!objData.isNpc) //상대가 사물이면
+        {
+            string objName = QuestManager.Instance.CheckQuestObjs(objData.id); //해당 사물 획득 체크
+            QuestManager.Instance.CheckQuest(objData.id);
+            Talk(objName + "을(를) 얻었다!",objData.id);
+
+            isAction = true;
+            talkPanel.SetActive(isAction); //panel 활성화/비활성화
+            
+            scanObj.SetActive(false);
+            return;
+        }
+        else
+        {
+            int questTalkIndex = QuestManager.Instance.GetQuestTalkIndex();
+            Dialogue dialoguess = DatabaseManager.Instance.GetDialogue(objData.id + questTalkIndex);
+            Talk(dialoguess, objData.id);
 
 
-        talkPanel.SetActive(isAction); //panel 활성화/비활성화
+            talkPanel.SetActive(isAction); //panel 활성화/비활성화
 
+        }
+
+    }
+    void Talk(string p_dialogue, int _id)
+    {
+        talkText.text = string.Empty;
+        StartCoroutine(TypeLine(p_dialogue, _id)); //대화창입력 코루틴 실행
+      //  isAction = false;
+       // talkPanel.SetActive(isAction);
     }
     void Talk(Dialogue p_dialogue, int _id)
     {
@@ -101,6 +126,7 @@ public class GameManager : Singleton<GameManager>
             talkData = p_dialogue.contexts[contextCount];
             StartCoroutine(TypeLine(talkData)); //대화창입력 코루틴 실행
             contextCount++;
+            isAction = true;
         }
         else
         {
@@ -110,7 +136,7 @@ public class GameManager : Singleton<GameManager>
             return;
 
         }
-        isAction = true;
+        
     }
 
     void ChangeSprite()
@@ -134,20 +160,44 @@ public class GameManager : Singleton<GameManager>
         }
         isnowTalking = false;
     }
+    IEnumerator TypeLine(string talking, int _id) //사물에말걸때 초상화x
+    {
+        Color color = PlayerportraitImg.color;
+        color.a = 0.0f;
+        PlayerportraitImg.color = color;
+        NPCportraitImg.color = color;
+
+        string t_replace = talking.Replace("'", ","); //csv파일은쉼표구분이라서
+        foreach (char c in t_replace.ToCharArray())
+        {
+            isnowTalking = true;
+            talkText.text += c;
+            yield return new WaitForSeconds(textSpeed);
+        }
+        yield return new WaitForSeconds(2.0f);
+        isnowTalking = false;
+        isAction = false;
+        talkPanel.SetActive(isAction);
+    }
     public IEnumerator SpriteChangeCoroutine(string p_SpriteName)
     {
         Image thisImage = NPCportraitImg.GetComponent<Image>();
+        Color t_color = thisImage.color;
 
         if (dialogues.talkerId[contextCount]==10) //플레이어가 말하는 경우
         {
            thisImage = PlayerportraitImg.GetComponent<Image>();
         }
-        
+        if(dialogues.talkerId[contextCount] %17==0)
+        {
+            t_color.a = 0;
+            thisImage.color = t_color;
+        }
         Sprite t_sprite = Resources.Load("Characters/" + p_SpriteName, typeof(Sprite)) as Sprite;
 
         if (!CheckSameSprite(thisImage.sprite, t_sprite))
         {
-            Color t_color = thisImage.color;
+            t_color = thisImage.color;
             t_color.a = 0;
             thisImage.color = t_color;
 

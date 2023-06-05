@@ -9,6 +9,7 @@ TagManager:
   - Gate
   - Monster
   - Barrier
+  - QuestObj
   layers:
   - Default
   - TransparentFX
